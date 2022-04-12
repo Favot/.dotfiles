@@ -1,4 +1,16 @@
+# Fig pre block. Keep at the top of this file.
+export PATH="${PATH}:${HOME}/.local/bin"
+eval "$(fig init zsh pre)"
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
 ZSH=$HOME/.oh-my-zsh
+# source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 ZSH_THEME="clean"
@@ -11,16 +23,18 @@ plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting his
 
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
+source "/usr/local/opt/zinit/zinit.zsh"
+
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
 
 # Load rbenv if installed (to manage your Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
-type -a rbenv > /dev/null && eval "$(rbenv init -)"
+# export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
+# type -a rbenv > /dev/null && eval "$(rbenv init -)"
 
 # Load pyenv (to manage your Python versions)
-export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtualenv/issues/135
-type -a pyenv > /dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
+# export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtualenv/issues/135
+# type -a pyenv > /dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
 
 # Load nvm (to manage your node versions)
 export NVM_DIR="$HOME/.nvm"
@@ -51,7 +65,7 @@ load-nvmrc
 # Rails and Ruby uses the local `bin` folder to store binstubs.
 # So instead of running `bin/rails` like the doc says, just run `rails`
 # Same for `./node_modules/.bin` and nodejs
-export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
+# export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
 
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -63,4 +77,19 @@ export LC_ALL=en_US.UTF-8
 # # fetch tools.jar for android release
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
+
+export PATH="$PATH:${HOME}/development/flutter/bin"
+
+# Goland stuff
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# eval "$(atuin init zsh)"source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
 
