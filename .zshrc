@@ -1,7 +1,6 @@
 # Fig pre block. Keep at the top of this file.
 export PATH="${PATH}:${HOME}/.local/bin"
 eval "$(fig init zsh pre)"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -81,7 +80,6 @@ export PATH=$PATH:/usr/local/go/bin
 # # fetch tools.jar for android release
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
-<<<<<<< HEAD
 
 export PATH="$PATH:${HOME}/development/flutter/bin"
 
@@ -98,5 +96,4 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # Fig post block. Keep at the bottom of this file.
 eval "$(fig init zsh post)"
 
-=======
->>>>>>> 233b55a3ba91099bf66295d21d9a40bb4d384e2f
+
