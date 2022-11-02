@@ -26,6 +26,7 @@
   d = !git --no-pager diff
   dt  = difftool
   stat = !git --no-pager diff --stat
+  clean = git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
 
 
   # Clean merged branches
