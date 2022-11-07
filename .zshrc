@@ -77,7 +77,7 @@ export LANGUAGE="en_US:en"
 export PATH=$PATH:/usr/local/go/bin
 
 # # fetch tools.jar for android release
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
 
 export PATH="$PATH:${HOME}/development/flutter/bin"
