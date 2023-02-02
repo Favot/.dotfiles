@@ -96,5 +96,26 @@ export ANDROID_HOME=/Users/smt/Library/Android/sdk
 export ANDROID_SDK_ROOT=/Users/smt/Library/Android/sdk
 export ANDROID_AVD_HOME=/Users/smt/.android/avd
 
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+
+
+function reset_trap {
+  # Hacky hack because of <function/script-that-sets-trap-INT>
+  trap - INT
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec reset_trap
+ 
