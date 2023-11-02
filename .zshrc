@@ -21,7 +21,7 @@ plugins=(git gitfast last-working-dir common-aliases zsh-syntax-highlighting his
 
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
-source "/usr/local/opt/zinit/zinit.zsh"
+source "/home/favot/.local/share/zinit/zinit.git/zinit.zsh"
 
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
 
@@ -85,7 +85,7 @@ export PATH="$PATH:${HOME}/development/flutter/bin"
 
 # Goland stuff
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+# export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # eval "$(atuin init zsh)"source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
@@ -129,3 +129,13 @@ export PATH="$HOME/.local/bin/lvim":$PATH
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
