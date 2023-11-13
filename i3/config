@@ -36,9 +36,9 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -47,6 +47,11 @@ floating_modifier $mod
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
+
+
+# floating pop up automatically
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # start a terminal
 bindsym $mod+Return exec konsole
@@ -191,10 +196,10 @@ bindsym $mod+r mode "resize"
 
 # Colors theme
 
-set $bg-color 	         #497186
-set $inactive-bg-color   #2f4956
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
+set $bg-color 	         #6e738d
+set $inactive-bg-color   #494d64
+set $text-color          #8bd5ca
+set $inactive-text-color #cad3f5
 set $urgent-bg-color     #E53935
 
 # window colors
@@ -209,8 +214,17 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 bar {
     position top
     padding 2px
-    status_command i3status
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    colors {
+  		background $bg-color
+	    separator #757575
+		  #                  border             background         text
+		  focused_workspace  $bg-color          $bg-color          $text-color
+		  inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		  urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	  }
 }
+
 
 
 bindsym $mod+shift+x exec i3lock
@@ -232,3 +246,8 @@ exec xinput set-prop "GXT7863:00 27C6:01E0 Touchpad" "libinput Tapping Enabled" 
 gaps inner 10
 # Set outer gaps
 gaps outer 10
+
+
+# Program launcher
+exec firefox
+exec klipper
