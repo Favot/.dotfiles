@@ -196,11 +196,11 @@ bindsym $mod+r mode "resize"
 
 # Colors theme
 
-set $bg-color 	         #6e738d
-set $inactive-bg-color   #494d64
-set $text-color          #8bd5ca
-set $inactive-text-color #cad3f5
-set $urgent-bg-color     #E53935
+set $bg-color 	         #5b6078
+set $inactive-bg-color   #181926
+set $text-color          #cad3f5
+set $inactive-text-color #a5adcb
+set $urgent-bg-color     #ed8796
 
 # window colors
 #                       border              background         text                 indicator
@@ -251,3 +251,5 @@ gaps outer 10
 # Program launcher
 exec firefox
 exec klipper
+
+# exec --no-startup-id polybar --reload
