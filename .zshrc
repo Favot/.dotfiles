@@ -92,10 +92,15 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools 
+# export ANDROID_HOME=/Users/smt/Library/Android/sdk
+# export ANDROID_SDK_ROOT=/Users/smt/Library/Android/sdk
+# export ANDROID_AVD_HOME=/Users/smt/.android/avd
 
-export ANDROID_HOME=/Users/smt/Library/Android/sdk
-export ANDROID_SDK_ROOT=/Users/smt/Library/Android/sdk
-export ANDROID_AVD_HOME=/Users/smt/.android/avd
+# Launch Android studio
+
+alias studio='sh /usr/local/android-studio-2022.3.1.22-linux/android-studio/bin/studio.sh'
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
