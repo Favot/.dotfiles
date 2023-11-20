@@ -69,7 +69,7 @@ load-nvmrc
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
-# Encoding stuff for the terminal
+# Encoding for the terminal
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANGUAGE="en_US:en"
@@ -83,7 +83,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 export PATH="$PATH:${HOME}/development/flutter/bin"
 
-# Goland stuff
+# Goland 
 export GOPATH=$HOME/go
 # export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
@@ -92,11 +92,11 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Android 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools 
-# export ANDROID_HOME=/Users/smt/Library/Android/sdk
-# export ANDROID_SDK_ROOT=/Users/smt/Library/Android/sdk
-# export ANDROID_AVD_HOME=/Users/smt/.android/avd
 
 # Launch Android studio
 
