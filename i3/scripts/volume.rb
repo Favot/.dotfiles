@@ -1,18 +1,36 @@
 #!/usr/bin/env ruby
 
+def display_volume
 # Fetch the current volume and mute status
-volume_output = `pactl list sinks`
-volume_level = volume_output[/\d+%/, 0].to_i # Extract volume level
-is_muted = volume_output.include?("Mute: yes")
+  volume_output = `pactl list sinks`
+  volume_level = volume_output[/\d+%/, 0].to_i # Extract volume level
+  is_muted = volume_output.include?("Mute: yes")
+  is_bluetooth_connected = volume_output.include?("bluez_sink")
 
-geticon = if is_muted == true
-            "<span color='#ee99a0'> </span>"
-          elsif volume_level > 66
-            "<span color='#f0c6c6'> </span>"
-          elsif volume_level > 33
-            "<span color='#f0c6c6'> </span>"
-          else
-            '<span color="#f0c6c6"> </span>'
-          end
-puts(geticon)
+  icon = getVolumeIcon(volume_level, is_muted)
+  bluetooth_icon = getBluetoothIcon(is_bluetooth_connected)
 
+  puts "<span color='#ee99a0'>#{bluetooth_icon} #{icon} </span>"
+end
+
+def getVolumeIcon (volume_level, is_muted)
+  if is_muted == true
+    ' '
+  elsif volume_level > 66
+    ""
+  elsif volume_level > 33
+    ""
+  else
+    ''
+  end
+end
+
+def getBluetoothIcon (is_bluetooth_connected)
+  if is_bluetooth_connected == true
+    '󰥰'
+  else
+    ''
+  end
+end
+
+puts display_volume
