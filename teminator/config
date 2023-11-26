@@ -1,0 +1,31 @@
+[global_config]
+  tab_position = bottom
+  putty_paste_style_source_clipboard = True
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 0.47
+    background_type = transparent
+    cursor_fg_color = "#000000"
+    cursor_bg_color = "#aaaaaa"
+    font = Hack Nerd Font Propo 12
+    show_titlebar = False
+    use_system_font = False
+    use_theme_colors = True
+  [[Catppuccin_Macchiato]]
+    background_darkness = 0.67
+    background_type = transparent
+    background_image = None
+    font = Hack Nerd Font Propo 12
+    show_titlebar = False
+    palette = "#494d64:#ed8796:#a6da95:#eed49f:#8aadf4:#f5bde6:#8bd5ca:#b8c0e0:#5b6078:#ed8796:#a6da95:#eed49f:#8aadf4:#f5bde6:#8bd5ca:#a5adcb"
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
