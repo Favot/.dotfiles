@@ -54,7 +54,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec terminator 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -231,14 +231,14 @@ bindsym $mod+shift+x exec i3lock
 
 exec_always feh --bg-scale ~/Pictures/wallpaper/AKL-wallpaper.jpg
 
-# Pulse Audio controls
+# Pulse Audio controlscon
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec ./toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec ./scripts/toggletouchpad.sh # toggle touchpad
 # Touchpas Tapping ennble
 exec xinput set-prop "GXT7863:00 27C6:01E0 Touchpad" "libinput Tapping Enabled" 1
 
@@ -251,5 +251,6 @@ gaps outer 10
 # Program launcher
 exec firefox
 exec klipper
+exec picom
 
 # exec --no-startup-id polybar --reload
