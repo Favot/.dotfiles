@@ -134,9 +134,9 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/.local/bin/lvim":$PATH
 
 # If not running interactively, do not do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 # Otherwise start tmux
-[[ -z "$TMUX" ]] && exec tmux
+# [[ -z "$TMUX" ]] && exec tmux
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
