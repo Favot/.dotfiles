@@ -92,7 +92,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+source $HOME/.nix-profile/etc/profile.d/nix.sh
 
 # Android 
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -140,3 +140,5 @@ export PATH="$HOME/.local/bin/lvim":$PATH
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+if [ -e /home/favot/.nix-profile/etc/profile.d/nix.sh ]; then . /home/favot/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
