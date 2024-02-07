@@ -4,6 +4,7 @@
   tab_position = bottom
   putty_paste_style_source_clipboard = True
 [keybindings]
+  layout_launcher = ""
 [profiles]
   [[default]]
     background_color = "#282828"
