@@ -3,24 +3,18 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
 ZSH=$HOME/.oh-my-zsh
-# source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+#source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+
+
+eval "$(starship init zsh)"
 
 # Useful oh-my-zsh plugins for Le Wagon bootcamps
 plugins=(git gitfast last-working-dir common-aliases history-substring-search npm zsh-autosuggestions web-search)
@@ -40,9 +34,6 @@ type -a rbenv >/dev/null && eval "$(rbenv init -)"
 
 # Load pyenv (to manage your Python versions)
 export PATH="$HOME/.pyenv/shims:$PATH"
-# export PATH="${HOME}/.pyenv/bin:${PATH}" # Needed for Linux/WSL
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1 # https://github.com/pyenv/pyenv-virtualenv/issues/135
-# type -a pyenv >/dev/null && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" && RPROMPT+='[🐍 $(pyenv_prompt_info)]'
 
 # Load nvm (to manage your node versions)
 export NVM_DIR="$HOME/.nvm"
@@ -114,6 +105,7 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 export "PATH=~/Library/Android/sdk/platform-tools:$PATH"
 
 
+
 # alias studio='sh /usr/local/android-studio-2022.3.1.22-linux/android-studio/bin/studio.sh'
 
 # Load a few important annexes, without Turbo
@@ -123,7 +115,6 @@ zinit light-mode for \
   zdharma-continuum/zinit-annex-bin-gem-node \
   zdharma-continuum/zinit-annex-patch-dl \
   zdharma-continuum/zinit-annex-rust \
-  zdharma-continuum/fast-syntax-highlighting
 
 ### End of Zinit's installer chunk
 
@@ -155,7 +146,12 @@ export PATH="$HOME/.local/bin/lvim":$PATH
 # if [ -e /home/favot/.nix-profile/etc/profile.d/nix.sh ]; then . /home/favot/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
+# now load zsh-syntax-highlighting plugin
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # CodeWhisperer post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
