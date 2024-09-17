@@ -13,11 +13,10 @@ ZSH=$HOME/.oh-my-zsh
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
-
 eval "$(starship init zsh)"
 
 # Useful oh-my-zsh plugins for Le Wagon bootcamps
-plugins=(git gitfast last-working-dir common-aliases history-substring-search npm zsh-autosuggestions web-search)
+plugins=(git gitfast last-working-dir common-aliases history-substring-search npm web-search)
 
 # (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
 #export HOMEBREW_NO_ANALYTICS=1
@@ -104,8 +103,6 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 # Launch Android studio
 export "PATH=~/Library/Android/sdk/platform-tools:$PATH"
 
-
-
 # alias studio='sh /usr/local/android-studio-2022.3.1.22-linux/android-studio/bin/studio.sh'
 
 # Load a few important annexes, without Turbo
@@ -114,7 +111,7 @@ zinit light-mode for \
   zdharma-continuum/zinit-annex-as-monitor \
   zdharma-continuum/zinit-annex-bin-gem-node \
   zdharma-continuum/zinit-annex-patch-dl \
-  zdharma-continuum/zinit-annex-rust \
+  zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
 
