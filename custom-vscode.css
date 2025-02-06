@@ -1,142 +1,9 @@
-/* Code canvas top shadow */
-.monaco-editor .scroll-decoration {
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75) !important;
-  top: -6px !important;
+/* ===== Title Bar Styling ===== */
+
+.monaco-workbench .part.titlebar > .titlebar-container {
+  background: transparent !important;
 }
 
-.mtk4,
-.mtk4.mtki {
-  color: #8bd5ca !important;
-}
-
-/* Toolbars when tabs are enabled. */
-.monaco-workbench
-  .part.editor
-  > .content
-  .editor-group-container
-  > .title
-  .editor-actions {
-  display: none !important;
-}
-
-.tab.active {
-  border: none !important;
-  border-bottom: 2px solid #c6a0f6 !important;
-  --tab-border-top-color: transparent !important;
-  background-color: #5b6078 !important; /* Subtle white overlay for brightness */
-}
-
-.tab {
-  border: none !important;
-  border-radius: 4px 4px 0 0 !important;
-  --tab-border-top-color: transparent !important;
-}
-
-/* Side bar */
-.part.sidebar {
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
-}
-
-/* Sidebar top shadow */
-.monaco-scrollable-element > .shadow.top {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75) !important;
-  top: -3px !important;
-}
-
-/* File explorer action buttons */
-.monaco-workbench .part.sidebar .title-actions .actions-container {
-  display: none;
-}
-
-/* File Explorer Item Label */
-.monaco-tree .monaco-tree-row .label-name,
-.monaco-list .monaco-list-row .monaco-icon-label .label-name {
-  /* font-size: 14px !important; */
-  /* font-weight: 400 !important; */
-  color: #cad3f5 !important;
-}
-
-/* Sidebar title */
-.composite.title {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-items: center !important;
-}
-.composite.title h2 {
-  font-weight: bold !important;
-  font-size: 12px !important;
-  text-transform: uppercase;
-  color: #bc9abc !important;
-}
-
-.composite.title h2::before {
-  display: inline-block;
-  margin-right: 6px;
-  font-size: 1.1rem;
-}
-
-/* Scroll Bar */
-.slider {
-  position: absolute !important;
-  right: 1px !important;
-  width: 1px !important;
-  background: #bc9abc !important;
-  left: auto !important;
-}
-
-.decorationsOverviewRuler {
-  width: 6px !important;
-}
-
-.codicon-toolbar-more,
-.codicon-word-wrap {
-  display: block !important;
-}
-
-/* Tooltip box style */
-.monaco-editor-hover,
-.monaco-hover {
-  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
-  padding: 8px !important;
-  background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
-  backdrop-filter: blur(3px) !important;
-  border-radius: 8px !important;
-  border: none !important;
-}
-
-/* Project title's style at the top. */
-.monaco-workbench
-  .part.titlebar
-  > .titlebar-container
-  > .titlebar-center
-  > .window-title {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-.monaco-workbench
-  .part.titlebar
-  > .titlebar-container
-  > .titlebar-center
-  > .window-title
-  > .command-center {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-.command-center-center {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-/* Project Title Centering */
 .titlebar-left {
   justify-content: flex-start !important;
   flex-grow: 0 !important;
@@ -155,33 +22,52 @@
   width: auto !important;
 }
 
-/* Hide unnecessary elements that might affect centering */
 .titlebar-right > * {
   display: none !important;
 }
-
-/* Search Label */
-.search-label {
-  font-size: 14px !important;
-  color: #fff;
-  display: block;
+.action-item.command-center-center {
+  width: fit-content !important;
+  padding: 0px 6px;
 }
 
-/* Search icon */
-.search-icon {
+.codicon-search.search-icon {
   display: none !important;
 }
 
-.codicon-search::before {
+/* .action-item.menu-entry {
   display: none !important;
+} */
+
+/* ===== Tab Styling ===== */
+.tab {
+  border: none !important;
+  border-radius: 4px 4px 0 0 !important;
+  --tab-border-top-color: transparent !important;
 }
 
-.codicon-arrow-right,
-.codicon-arrow-left {
-  display: none !important;
+.tab.active {
+  border: none !important;
+  border-bottom: 2px solid #c6a0f6 !important;
+  --tab-border-top-color: transparent !important;
+  background-color: rgb(183, 189, 248, 0.3) !important;
 }
 
-/* Command Palette */
+/* ===== Sidebar Styling ===== */
+.part.sidebar {
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+}
+
+.monaco-scrollable-element > .shadow.top {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75) !important;
+  top: -3px !important;
+}
+
+/* Hide file explorer action buttons */
+.monaco-workbench .part.sidebar .title-actions .actions-container {
+  display: none;
+}
+
+/* ===== Command Palette Styling ===== */
 .quick-input-widget {
   transform: translateY(-50%) !important;
   top: 50% !important;
@@ -189,15 +75,88 @@
   padding: 10px 10px 18px 10px !important;
   background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
   backdrop-filter: blur(3px) !important;
-  border-radius: 20px !important;
+  border-radius: 8px !important;
 }
 
-/* Remove background for lists */
+/* Command palette input */
+.quick-input-filter .monaco-inputbox input {
+  font-size: 18px !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  border: none !important;
+  background-color: rgba(34, 34, 34, 0.4) !important;
+  /* margin-bottom: 16px !important; */
+}
+
+.monaco-inputbox input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Command palette items */
+.monaco-list-row .monaco-icon-label,
+.monaco-list-row .monaco-icon-label .label-name {
+  font-size: 18px !important;
+  font-weight: 300 !important;
+}
+
+.monaco-list-row.focused .monaco-icon-label,
+.monaco-list-row.focused .monaco-icon-label .label-name {
+  font-weight: 500 !important;
+}
+
+.monaco-list-row.focused,
+.monaco-list .monaco-list-row.focused {
+  background-color: rgb(183, 189, 248, 0.3) !important;
+}
+
+/* ===== Editor Styling ===== */
+/* Code canvas top shadow */
+.monaco-editor .scroll-decoration {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75) !important;
+  top: -6px !important;
+}
+
+/* Comments color */
+.mtk4,
+.mtk4.mtki {
+  color: #8bd5ca !important;
+}
+
+/* ===== Scroll Bar Styling ===== */
+.slider {
+  position: absolute !important;
+  right: 1px !important;
+  width: 1px !important;
+  background: #bc9abc !important;
+  left: auto !important;
+}
+
+.decorationsOverviewRuler {
+  width: 6px !important;
+}
+
+/* ===== Tooltip Styling ===== */
+.monaco-editor-hover,
+.monaco-hover {
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
+  padding: 8px !important;
+  background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
+  backdrop-filter: blur(3px) !important;
+  border-radius: 8px !important;
+  border: none !important;
+}
+
+/* ===== Icon Visibility Controls ===== */
+.codicon-toolbar-more,
+.codicon-word-wrap {
+  display: block !important;
+}
+
+/* ===== List Styling ===== */
 .monaco-list-rows {
   background: transparent !important;
 }
 
-/* List hover */
 .monaco-list-row:hover {
   background: rgba(0, 0, 0, 0.2) !important;
 }
@@ -206,21 +165,7 @@
   background: none !important;
 }
 
-/* Command palette text input */
-.quick-input-filter .monaco-inputbox input {
-  font-size: 18px !important;
-  border-radius: 12px !important;
-  padding: 8px !important;
-  border: none !important;
-  background-color: rgba(34, 34, 34, 0.4) !important;
-  /* margin-bottom: 16px !important; */
-}
-
-.monaco-list-row.focused,
-.monaco-list .monaco-list-row.focused {
-  background-color: rgb(198, 160, 246, 0.3) !important;
-}
-
+/* ===== Misc ===== */
 #command-blur {
   position: absolute;
   width: 100%;
@@ -231,24 +176,6 @@
   backdrop-filter: blur(8px);
 }
 
-/* Command palette's input box placeholder. */
-.monaco-inputbox input::placeholder {
-  color: rgba(255, 255, 255, 0.3) !important;
-}
-
-/* Container that holds the VS Code home icon. */
 .editor-group-watermark {
   max-width: none !important;
-}
-
-/* Command palette items */
-.monaco-list-row .monaco-icon-label,
-.monaco-list-row .monaco-icon-label .label-name {
-  font-size: 16px !important;
-}
-
-/* Command palette focused item */
-.monaco-list-row.focused .monaco-icon-label,
-.monaco-list-row.focused .monaco-icon-label .label-name {
-  font-weight: bold !important;
 }
