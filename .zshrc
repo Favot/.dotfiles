@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/favot/.zsh/completions:"* ]]; then export FPATH="/home/favot/.zsh/completions:$FPATH"; fi
 # Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -12,7 +14,6 @@ ZSH=$HOME/.oh-my-zsh
 
 # You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
 # ZSH_THEME="powerlevel10k/powerlevel10k"
-
 
 eval "$(starship init zsh)"
 
@@ -74,9 +75,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANGUAGE="en_US:en"
 
-#  Go languange
-export PATH=$PATH:/usr/local/go/bin
-
 # # fetch tools.jar for android release
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
@@ -104,8 +102,6 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 # Launch Android studio
 export "PATH=~/Library/Android/sdk/platform-tools:$PATH"
 
-
-
 # alias studio='sh /usr/local/android-studio-2022.3.1.22-linux/android-studio/bin/studio.sh'
 
 # Load a few important annexes, without Turbo
@@ -114,7 +110,7 @@ zinit light-mode for \
   zdharma-continuum/zinit-annex-as-monitor \
   zdharma-continuum/zinit-annex-bin-gem-node \
   zdharma-continuum/zinit-annex-patch-dl \
-  zdharma-continuum/zinit-annex-rust \
+  zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
 
@@ -155,3 +151,7 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+. "/home/favot/.deno/env"export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
