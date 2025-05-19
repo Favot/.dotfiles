@@ -1,47 +1,95 @@
+#=============================================================================
+# TERMINAL CONFIGURATION
+#=============================================================================
+
+# Encoding for the terminal
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANGUAGE="en_US:en"
+
 # Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/favot/.zsh/completions:"* ]]; then export FPATH="/home/favot/.zsh/completions:$FPATH"; fi
-# Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ ":$FPATH:" != *":${HOME}/.zsh/completions:"* ]]; then
+  export FPATH="${HOME}/.zsh/completions:$FPATH"
+fi
 
+#=============================================================================
+# SHELL ENHANCEMENTS
+#=============================================================================
+
+# Oh My Zsh Configuration
 ZSH=$HOME/.oh-my-zsh
-#source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
-# You can change the theme with another one from https://github.com/robbyrussell/oh-my-zsh/wiki/themes
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+# Set Oh My Zsh theme (using a simple theme since we're using Starship)
+ZSH_THEME="robbyrussell"
 
+# Starship prompt (this will override the Oh My Zsh theme)
 eval "$(starship init zsh)"
 
-# Useful oh-my-zsh plugins for Le Wagon bootcamps
+# Oh My Zsh plugins
 plugins=(git gitfast last-working-dir common-aliases history-substring-search npm zsh-autosuggestions web-search)
 
-# (macOS-only) Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/docs/Analytics.md
-#export HOMEBREW_NO_ANALYTICS=1
-
-# Actually load Oh-My-Zsh
+# Load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
-source "/Users/cfavot/.local/share/zinit/zinit.git/zinit.zsh"
 
-unalias rm # No interactive rm by default (brought by plugins/common-aliases)
+# Zinit plugin manager
+source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
 
-# Load rbenv if installed (to manage your Ruby versions)
-export PATH="${HOME}/.rbenv/bin:${PATH}" # Needed for Linux/WSL
+# Load zinit annexes
+zinit light-mode for \
+  zdharma-continuum/zinit-annex-as-monitor \
+  zdharma-continuum/zinit-annex-bin-gem-node \
+  zdharma-continuum/zinit-annex-patch-dl \
+  zdharma-continuum/zinit-annex-rust
+
+# Syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#=============================================================================
+# PATH CONFIGURATION
+#=============================================================================
+
+# Python user binaries
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+
+# Java configuration
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+
+# Go configuration
+export GOPATH=$HOME/go
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# Flutter
+export PATH="$PATH:${HOME}/development/flutter/bin"
+
+# Volta (Node.js version manager)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# LunarVim
+export PATH="$HOME/.local/bin/lvim:$PATH"
+
+# Deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+#=============================================================================
+# LANGUAGE VERSION MANAGERS
+#=============================================================================
+
+# Ruby (rbenv)
+export PATH="${HOME}/.rbenv/bin:${PATH}"
 type -a rbenv >/dev/null && eval "$(rbenv init -)"
 
-# Load pyenv (to manage your Python versions)
+# Python (pyenv)
 export PATH="$HOME/.pyenv/shims:$PATH"
 
-# Load nvm (to manage your node versions)
+# Node.js (nvm)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Call `nvm use` automatically in a directory with a `.nvmrc` file
+# NVM auto-switching
 autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version="$(nvm version)"
@@ -62,96 +110,44 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# Rails and Ruby uses the local `bin` folder to store binstubs.
-# So instead of running `bin/rails` like the doc says, just run `rails`
-# Same for `./node_modules/.bin` and nodejs
-# export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
+#=============================================================================
+# ANDROID DEVELOPMENT
+#=============================================================================
 
-# Store your own aliases in the ~/.aliases file and load the here.
-[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
-
-# Encoding for the terminal
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LANGUAGE="en_US:en"
-
-# # fetch tools.jar for android release
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$PATH
-
-export PATH="$PATH:${HOME}/development/flutter/bin"
-
-# Goland
-export GOPATH=$HOME/go
-# export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-# eval "$(atuin init zsh)"source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-
-# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# source $HOME/.nix-profile/etc/profile.d/nix.sh
-
-# Android
+# Android SDK configuration
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=~/Library/Android/sdk/platform-tools:$PATH
-# Launch Android studio
-export "PATH=~/Library/Android/sdk/platform-tools:$PATH"
 
-# alias studio='sh /usr/local/android-studio-2022.3.1.22-linux/android-studio/bin/studio.sh'
+#=============================================================================
+# SYSTEM CONFIGURATION
+#=============================================================================
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-  zdharma-continuum/zinit-annex-as-monitor \
-  zdharma-continuum/zinit-annex-bin-gem-node \
-  zdharma-continuum/zinit-annex-patch-dl \
-  zdharma-continuum/zinit-annex-rust
+# Disable interactive rm by default
+unalias rm
 
-### End of Zinit's installer chunk
+# Custom aliases
+[[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
+# Dynamic library path
 export DYLD_LIBRARY_PATH=/usr/local/opt/capstone/lib/:$DYLD_LIBRARY_PATH
 
+#=============================================================================
+# SHELL HOOKS AND UTILITIES
+#=============================================================================
+
+# Reset trap function
 function reset_trap {
-  # Hacky hack because of <function/script-that-sets-trap-INT>
   trap - INT
 }
 
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec reset_trap
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+eval "$(starship init zsh)"
 
-# lunarVim
-
-export PATH="$HOME/.local/bin/lvim":$PATH
-
-# If not running interactively, do not do anything
-# [[ $- != *i* ]] && return
-# Otherwise start tmux
-# [[ -z "$TMUX" ]] && exec tmux
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-# if [ -e /home/favot/.nix-profile/etc/profile.d/nix.sh ]; then . /home/favot/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-# now load zsh-syntax-highlighting plugin
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-. "/home/favot/.deno/env"export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+#=============================================================================
+# EXTERNAL TOOLS INTEGRATION
+#=============================================================================

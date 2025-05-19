@@ -1,0 +1,46 @@
+# Python aliases
+alias py='python'
+alias pip='pip3'
+alias python='python3'
+
+# Ruby aliases
+alias rb='ruby'
+
+# Git aliases
+alias g='git'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gs='git status'
+alias gd='git diff'
+alias gco='git checkout'
+
+# LazyGit aliases
+alias lg='lazygit'
+alias lga='lazygit add'
+alias lgc='lazygit commit'
+alias lgp='lazygit push'
+alias lgl='lazygit pull'
+alias lgs='lazygit status'
+
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# List aliases
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+# System aliases
+alias update='brew update && brew upgrade'
+alias cleanup='brew cleanup'
+alias ports='netstat -tulanp'
+
+# Tmux aliases
+alias t='tmux'
+alias ta='tmux attach'
+alias tl='tmux ls'
+alias tk='tmux kill-session'
