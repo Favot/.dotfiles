@@ -56,5 +56,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # shell integration
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh)"
+fi
 

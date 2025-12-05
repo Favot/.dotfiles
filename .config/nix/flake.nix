@@ -31,7 +31,10 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-services, ... }:
   let
-    configuration = { pkgs, ... }: {
+    configuration = { pkgs, ... }:
+    let
+      firaMonoNerdFont = pkgs.nerd-fonts.fira-mono;
+    in {
       nixpkgs.config.allowUnfree = true;
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -43,7 +46,7 @@
         pkgs.wget
         pkgs.gh
         pkgs.stow
-        pkgs.starship
+        pkgs.oh-my-posh
         pkgs.tmux
         pkgs.zsh
 
@@ -78,6 +81,9 @@
         pkgs.unzip
         pkgs.zip
         pkgs.gnupg
+
+        # Fonts
+        firaMonoNerdFont
       ];
 
       nixpkgs.config.allowBroken = true;
@@ -168,6 +174,35 @@
         # Install nvm if it doesn't exist
         if [ ! -d "/Users/favot/.nvm" ]; then
           sudo -u favot bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash' || true
+        fi
+      '';
+
+      # Install FiraMono Nerd Font
+      system.activationScripts.fonts.text = ''
+        # Install FiraMono Nerd Font to system fonts directory
+        FONT_DIR="/Library/Fonts"
+        FONT_SOURCE="${firaMonoNerdFont}/share/fonts"
+        
+        # Create font directory if it doesn't exist
+        mkdir -p "$FONT_DIR"
+        
+        # Find and copy FiraMono Nerd Font files
+        if [ -d "$FONT_SOURCE" ]; then
+          echo "Installing FiraMono Nerd Font..."
+          find "$FONT_SOURCE" -name "*FiraMono*" -type f | while read -r font; do
+            font_name=$(basename "$font")
+            if [ ! -f "$FONT_DIR/$font_name" ]; then
+              sudo cp "$font" "$FONT_DIR/$font_name"
+              echo "  Installed: $font_name"
+            else
+              echo "  Already installed: $font_name"
+            fi
+          done
+          # Refresh font cache
+          /System/Library/Frameworks/CoreText.framework/Versions/A/Resources/fontCache -v 2>/dev/null || true
+          echo "FiraMono Nerd Font installation complete!"
+        else
+          echo "Warning: Font source directory not found: $FONT_SOURCE"
         fi
       '';
 
