@@ -76,6 +76,7 @@
         pkgs.fd          # Better find
         pkgs.zoxide      # Better cd
         pkgs.delta       # Better git diff
+        pkgs.go-task     # Task runner
 
         # Libraries
         pkgs.capstone
@@ -182,6 +183,39 @@
         else
           echo "nvm is already installed"
         fi
+      '';
+
+      # Install TPM (Tmux Plugin Manager) if it doesn't exist
+      system.activationScripts.tpm.text = ''
+        # Install TPM if it doesn't exist
+        TPM_HOME="/Users/favot/.tmux/plugins/tpm"
+        if [ ! -d "$TPM_HOME" ]; then
+          echo "Installing TPM (Tmux Plugin Manager)..."
+          sudo -u favot mkdir -p "$(dirname "$TPM_HOME")"
+          sudo -u favot git clone https://github.com/tmux-plugins/tpm "$TPM_HOME" || true
+        else
+          echo "TPM is already installed"
+        fi
+      '';
+
+      # Disable macOS system shortcuts that conflict with Ctrl+Space for tmux
+      system.activationScripts.keyboardShortcuts.text = ''
+        echo "Configuring keyboard shortcuts to allow Ctrl+Space for tmux..."
+        
+        # Disable Ctrl+Space for switching input sources (Keyboard ID 60)
+        # This is the most common conflict on macOS
+        sudo -u favot /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:60:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || {
+          # If the key doesn't exist, create it
+          sudo -u favot /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:enabled bool false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || true
+        }
+        
+        # Note: You may also need to configure your terminal emulator to pass Ctrl+Space through
+        # For iTerm2: Preferences > Keys > Key Bindings > remove or change Ctrl+Space
+        # For Terminal.app: This should work by default
+        # For other terminals: Check their keyboard shortcut settings
+        
+        echo "Keyboard shortcut configuration complete."
+        echo "Note: If Ctrl+Space still doesn't work, check your terminal emulator's keyboard shortcut settings."
       '';
 
       # Install FiraMono Nerd Font
