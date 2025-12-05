@@ -213,6 +213,59 @@
         fi
       '';
 
+      # Install displayplacer and set display resolution to 2048x1330
+      system.activationScripts.displayResolution.text = ''
+        # Install displayplacer if not already installed
+        if ! command -v displayplacer >/dev/null 2>&1; then
+          echo "Installing displayplacer for display resolution management..."
+          if command -v brew >/dev/null 2>&1; then
+            # Tap the repository first
+            brew tap jakehilborn/jakehilborn 2>/dev/null || true
+            # Install displayplacer
+            brew install displayplacer 2>/dev/null || {
+              echo "Warning: Could not install displayplacer automatically."
+              echo "You can install it manually with: brew tap jakehilborn/jakehilborn && brew install displayplacer"
+            }
+          else
+            echo "Warning: Homebrew not found. Cannot install displayplacer."
+          fi
+        fi
+        
+        # Set display resolution to 2048x1330
+        echo "Configuring display resolution to 2048x1330..."
+        
+        # Wait a moment for displayplacer to be available
+        sleep 1
+        
+        # Use displayplacer to set the resolution
+        if command -v displayplacer >/dev/null 2>&1; then
+          echo "Using displayplacer to set resolution to 2048x1330..."
+          
+          # Get the main display ID
+          MAIN_DISPLAY=$(displayplacer list 2>/dev/null | grep -A 5 "Persistent screen id" | head -1 | awk '{print $4}' || echo "")
+          
+          if [ -n "$MAIN_DISPLAY" ]; then
+            # Set resolution for the main display
+            displayplacer "id:$MAIN_DISPLAY res:2048x1330" 2>/dev/null || {
+              echo "Attempting alternative method to set resolution..."
+              # Try without specifying display ID (will use main display)
+              displayplacer "res:2048x1330" 2>/dev/null || echo "Could not set resolution. You may need to set it manually."
+            }
+          else
+            # Try to set resolution without specifying display ID
+            echo "Setting resolution for default display..."
+            displayplacer "res:2048x1330" 2>/dev/null || echo "Could not set resolution. You may need to set it manually."
+          fi
+        else
+          echo "Warning: displayplacer not available. Resolution will not be set automatically."
+          echo "You can install it manually with:"
+          echo "  brew tap jakehilborn/jakehilborn"
+          echo "  brew install displayplacer"
+          echo "  displayplacer 'res:2048x1330'"
+        fi
+        
+        echo "Display resolution configuration complete!"
+      '';
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
