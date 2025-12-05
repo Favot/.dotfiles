@@ -33,6 +33,7 @@ alias ....='cd ../../..'
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+alias ls='ls --color'
 
 # System aliases
 alias update='brew update && brew upgrade'

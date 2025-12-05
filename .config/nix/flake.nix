@@ -35,53 +35,50 @@
       nixpkgs.config.allowUnfree = true;
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-  environment.systemPackages = [ 
-    pkgs.git
-    pkgs.lazygit
-    pkgs.bruno
-    pkgs.vim
-    pkgs.wget
-    pkgs.gh
-    pkgs.stow
-    pkgs.starship
-    pkgs.tmux
+      environment.systemPackages = [
+        pkgs.git
+        pkgs.lazygit
+        pkgs.bruno
+        pkgs.vim
+        pkgs.wget
+        pkgs.gh
+        pkgs.stow
+        pkgs.starship
+        pkgs.tmux
+        pkgs.zsh
 
-  
-  # Language version managers
-    pkgs.rbenv
-    pkgs.pyenv
-  
-  # Programming languages
-    pkgs.go
-    pkgs.deno
-    pkgs.zulu17
-  
-  # React Native specific
-    pkgs.watchman    # Essential for React Native
-    pkgs.cocoapods   # iOS dependencies
-  
-  # Docker
-    pkgs.docker
-    pkgs.docker-compose
-  
-  # Terminal utilities
-    pkgs.fzf         # Fuzzy finder
-    pkgs.bat         # Better cat
-    pkgs.ripgrep     # Better grep
-    pkgs.fd          # Better find
-    pkgs.zoxide      # Better cd
-    pkgs.delta       # Better git diff
-  
-    # Libraries
-    pkgs.capstone
+        # Language version managers
+        pkgs.rbenv
+        pkgs.pyenv
 
-    pkgs.xcodebuild
+        # Programming languages
+        pkgs.go
+        pkgs.deno
+        pkgs.zulu17
 
+        # React Native specific
+        pkgs.watchman    # Essential for React Native
+        pkgs.cocoapods   # iOS dependencies
 
-    pkgs.unzip
-pkgs.zip
-pkgs.gnupg
-];
+        # Docker
+        pkgs.docker
+        pkgs.docker-compose
+
+        # Terminal utilities
+        pkgs.fzf         # Fuzzy finder
+        pkgs.bat         # Better cat
+        pkgs.ripgrep     # Better grep
+        pkgs.fd          # Better find
+        pkgs.zoxide      # Better cd
+        pkgs.delta       # Better git diff
+
+        # Libraries
+        pkgs.capstone
+        pkgs.xcodebuild
+        pkgs.unzip
+        pkgs.zip
+        pkgs.gnupg
+      ];
 
       nixpkgs.config.allowBroken = true;
       
@@ -96,23 +93,23 @@ pkgs.gnupg
 
         # Uncomment to install cask packages from Homebrew.
         casks = [
-        "cursor"
-        "zed"
-        # Browsers
-        "firefox"
-        "zen"
-      # Window Management
-      "rectangle"
-  # Docker
-  "docker-desktop"
-  # Development Tools
-  "postman"  # API testing (alternative to Bruno)
-  "insomnia"  # Another API client option
-  # React/React Native Tools
-  "android-studio"  # For React Native Android development
-  # Utilities
-  "raycast"  # Better Spotlight alternative
-  "ghostty"  # Better terminal (if you want)
+          "cursor"
+          "zed"
+          # Browsers
+          "firefox"
+          "zen"
+          # Window Management
+          "rectangle"
+          # Docker
+          "docker-desktop"
+          # Development Tools
+          "postman"  # API testing (alternative to Bruno)
+          "insomnia"  # Another API client option
+          # React/React Native Tools
+          "android-studio"  # For React Native Android development
+          # Utilities
+          "raycast"  # Better Spotlight alternative
+          "ghostty"  # Better terminal (if you want)
         ];
 
         # Mac App Store apps installation
@@ -138,11 +135,34 @@ pkgs.gnupg
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
-      # programs.zsh.enable = true;  # Will be configured step by step
+      # Enable zsh and set as default shell
+      programs.zsh.enable = true;
+
+      # Add zsh to the list of allowed shells
+      environment.shells = [ pkgs.zsh ];
+
+      # Set zsh as the default shell for the primary user
+      users.users.favot = {
+        shell = pkgs.zsh;
+      };
 
       # Package installation and setup scripts
+      # Accept Xcode license (required for Homebrew and other tools)
+      # This must run early, before Homebrew operations
+      system.activationScripts."00-xcodeLicense" = {
+        text = ''
+          # Set up Xcode and accept license if Xcode is installed
+          if [ -d "/Applications/Xcode.app" ]; then
+            # Ensure xcode-select points to Xcode
+            sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer 2>/dev/null || true
+            # Accept Xcode license (this will fail silently if already accepted)
+            echo "Ensuring Xcode license is accepted..."
+            sudo xcodebuild -license accept 2>&1 || true
+          fi
+        '';
+        deps = [];
+      };
+
       # Install nvm if it doesn't exist
       system.activationScripts.nvm.text = ''
         # Install nvm if it doesn't exist
@@ -150,6 +170,7 @@ pkgs.gnupg
           sudo -u favot bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash' || true
         fi
       '';
+
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -178,7 +199,7 @@ pkgs.gnupg
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."defaultMac" = nix-darwin.lib.darwinSystem {
-      modules = [ 
+      modules = [
         configuration
         mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
@@ -192,7 +213,6 @@ pkgs.gnupg
 
             # User owning the Homebrew prefix
             user = "favot";
-
 
             # Optional: Declarative tap management
             taps = {
