@@ -45,6 +45,8 @@
     pkgs.stow
     pkgs.starship
     pkgs.oh-my-zsh
+    pkgs.tmux
+
   
   # Language version managers
     pkgs.rbenv
@@ -73,6 +75,13 @@
   
     # Libraries
     pkgs.capstone
+
+    pkgs.xcodebuild
+
+
+    pkgs.unzip
+pkgs.zip
+pkgs.gnupg
 ];
 
       nixpkgs.config.allowBroken = true;
@@ -84,6 +93,8 @@
         brews = [
           "zsh-syntax-highlighting"
           "zinit"
+          # "mas" - removed: mas signin not supported on newer macOS versions
+          # See: https://github.com/mas-cli/mas#known-issues
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -92,11 +103,11 @@
         "zed"
         # Browsers
         "firefox"
-        "zen-browser"
+        "zen"
       # Window Management
       "rectangle"
   # Docker
-  "docker"
+  "docker-desktop"
   # Development Tools
   "postman"  # API testing (alternative to Bruno)
   "insomnia"  # Another API client option
@@ -107,9 +118,16 @@
   "ghostty"  # Better terminal (if you want)
         ];
 
-        # Uncomment to install app store apps using mas-cli.
+        # Mac App Store apps installation
+        # Note: mas signin is not supported on newer macOS versions
+        # Xcode must be installed manually from Mac App Store:
+        # 1. Open Mac App Store and search for "Xcode"
+        # 2. Install Xcode (App Store ID: 497799835)
+        # 3. After installation, run:
+        #    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        #    sudo xcodebuild -license accept
         # masApps = {
-        #   "Session" = 1521432881;
+        #   "Xcode" = 497799835;
         # };
 
         # Uncomment to remove any non-specified homebrew packages.
