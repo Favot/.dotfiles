@@ -42,7 +42,7 @@
         pkgs.gh
         pkgs.stow
         pkgs.starship
-        pkgs.nvm
+        pkgs.oh-my-zsh
       ];
 
       nixpkgs.config.allowBroken = true;
@@ -52,9 +52,9 @@
 
         # Install cli packages from Homebrew.
         brews = [
-          "oh-my-zsh"
           "zsh-syntax-highlighting"
           "zinit"
+          "nvm"
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -89,6 +89,14 @@
       programs.zsh.shellInit = ''
         # Cursor CLI
         export PATH="/Applications/Cursor.app/Contents/Resources/app/bin:$PATH"
+      '';
+
+      # Set up oh-my-zsh symlink for compatibility with existing .zshrc
+      system.activationScripts.ohMyZsh.text = ''
+        # Create symlink for oh-my-zsh if it doesn't exist
+        if [ ! -e "/Users/favot/.oh-my-zsh" ]; then
+          sudo -u favot ln -sf ${pkgs.oh-my-zsh}/share/oh-my-zsh /Users/favot/.oh-my-zsh
+        fi
       '';
 
       # Set Git commit hash for darwin-version.
