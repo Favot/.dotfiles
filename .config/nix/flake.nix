@@ -58,6 +58,7 @@
         # Programming languages
         pkgs.go
         pkgs.deno
+        # Node.js managed via nvm (see system.activationScripts.nvm)
         pkgs.zulu17
 
         # React Native specific
@@ -85,6 +86,9 @@
 
         # Fonts
         firaMonoNerdFont
+
+        pkgs.google-chrome
+        pkgs.firefox
       ];
 
       nixpkgs.config.allowBroken = true;
@@ -101,9 +105,8 @@
         # Uncomment to install cask packages from Homebrew.
         casks = [
           "cursor"
-          "zed"
+          "antigravity"
           # Browsers
-          "firefox"
           "zen"
           # Window Management
           "rectangle"
@@ -170,11 +173,14 @@
         deps = [];
       };
 
-      # Install nvm if it doesn't exist
+      # Install nvm if it doesn't exist (for Node.js version management)
       system.activationScripts.nvm.text = ''
         # Install nvm if it doesn't exist
         if [ ! -d "/Users/favot/.nvm" ]; then
+          echo "Installing nvm (Node Version Manager)..."
           sudo -u favot bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash' || true
+        else
+          echo "nvm is already installed"
         fi
       '';
 

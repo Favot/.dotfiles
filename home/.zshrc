@@ -56,3 +56,17 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # shell integration
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# Added by Antigravity
+export PATH="/Users/favot/.antigravity/antigravity/bin:$PATH"
+
+# Add Nix system profile to PATH (for packages installed via nix-darwin)
+export PATH="/run/current-system/sw/bin:$PATH"
+
+# Load nvm (Node Version Manager) - must be loaded after PATH setup
+# nvm will prepend its paths, ensuring nvm-managed Node.js takes precedence
+export NVM_DIR="$HOME/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  \. "$NVM_DIR/nvm.sh"  # This loads nvm and prepends to PATH
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
