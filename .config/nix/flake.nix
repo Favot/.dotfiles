@@ -44,7 +44,6 @@
     pkgs.gh
     pkgs.stow
     pkgs.starship
-    pkgs.oh-my-zsh
     pkgs.tmux
 
   
@@ -91,8 +90,6 @@ pkgs.gnupg
 
         # Install cli packages from Homebrew.
         brews = [
-          "zsh-syntax-highlighting"
-          "zinit"
           # "mas" - removed: mas signin not supported on newer macOS versions
           # See: https://github.com/mas-cli/mas#known-issues
         ];
@@ -143,33 +140,9 @@ pkgs.gnupg
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
-      programs.zsh.enable = true;
-      programs.zsh.shellInit = ''
-        # Cursor CLI
-        export PATH="/Applications/Cursor.app/Contents/Resources/app/bin:$PATH"
-        
-        # Java (zulu) - set JAVA_HOME for zulu installed via Nix
-        export JAVA_HOME="${pkgs.zulu17}/lib/openjdk"
-        export PATH="$JAVA_HOME/bin:$PATH"
-        
-        # Environment variables for .zshrc to check (optional - .zshrc will work without these)
-        # These help .zshrc locate tools, but .zshrc has fallbacks if these aren't set
-        export ZSH_OH_MY_ZSH_PATH="$HOME/.oh-my-zsh"
-        export ZSH_SYNTAX_HIGHLIGHTING_PATHS="/opt/homebrew/share/zsh-syntax-highlighting:/usr/local/share/zsh-syntax-highlighting"
-      '';
+      # programs.zsh.enable = true;  # Will be configured step by step
 
       # Package installation and setup scripts
-      # Note: .zshrc is designed to work independently - it checks for tool existence before using them
-      # These activation scripts set up prerequisites, but .zshrc will work even if they haven't run yet
-      
-      # Set up oh-my-zsh symlink for compatibility with existing .zshrc
-      system.activationScripts.ohMyZsh.text = ''
-        # Create symlink for oh-my-zsh if it doesn't exist
-        if [ ! -e "/Users/favot/.oh-my-zsh" ]; then
-          sudo -u favot ln -sf ${pkgs.oh-my-zsh}/share/oh-my-zsh /Users/favot/.oh-my-zsh
-        fi
-      '';
-
       # Install nvm if it doesn't exist
       system.activationScripts.nvm.text = ''
         # Install nvm if it doesn't exist
