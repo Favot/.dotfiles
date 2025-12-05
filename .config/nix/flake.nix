@@ -38,6 +38,7 @@
       environment.systemPackages = [ 
         pkgs.git
         pkgs.lazygit
+        pkgs.bruno
         pkgs.vim
         pkgs.wget
         pkgs.gh
