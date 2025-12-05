@@ -49,6 +49,7 @@
         pkgs.oh-my-posh
         pkgs.tmux
         pkgs.zsh
+        pkgs.tree
 
         # Language version managers
         pkgs.rbenv
