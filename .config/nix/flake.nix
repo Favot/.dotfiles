@@ -35,27 +35,45 @@
       nixpkgs.config.allowUnfree = true;
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages = [ 
-        pkgs.git
-        pkgs.lazygit
-        pkgs.bruno
-        pkgs.vim
-        pkgs.wget
-        pkgs.gh
-        pkgs.stow
-        pkgs.starship
-        pkgs.oh-my-zsh
-        # Language version managers (referenced in .zshrc)
-        pkgs.rbenv
-        pkgs.pyenv
-        # Programming languages (referenced in .zshrc)
-        pkgs.go
-        pkgs.deno
-        # Java (zulu JDK)
-        pkgs.zulu17
-        # Libraries (referenced in .zshrc)
-        pkgs.capstone
-      ];
+  environment.systemPackages = [ 
+    pkgs.git
+    pkgs.lazygit
+    pkgs.bruno
+    pkgs.vim
+    pkgs.wget
+    pkgs.gh
+    pkgs.stow
+    pkgs.starship
+    pkgs.oh-my-zsh
+  
+  # Language version managers
+    pkgs.rbenv
+    pkgs.pyenv
+  
+  # Programming languages
+    pkgs.go
+    pkgs.deno
+    pkgs.zulu17
+  
+  # React Native specific
+    pkgs.watchman    # Essential for React Native
+    pkgs.cocoapods   # iOS dependencies
+  
+  # Docker
+    pkgs.docker
+    pkgs.docker-compose
+  
+  # Terminal utilities
+    pkgs.fzf         # Fuzzy finder
+    pkgs.bat         # Better cat
+    pkgs.ripgrep     # Better grep
+    pkgs.fd          # Better find
+    pkgs.zoxide      # Better cd
+    pkgs.delta       # Better git diff
+  
+    # Libraries
+    pkgs.capstone
+];
 
       nixpkgs.config.allowBroken = true;
       
@@ -70,12 +88,23 @@
 
         # Uncomment to install cask packages from Homebrew.
         casks = [
-        #  "balenaetcher"
-        #  "calibre"
-        #  "carbon-copy-cloner"
-        #  "logitech-options"
-          "cursor"
-          "zed"
+        "cursor"
+        "zed"
+        # Browsers
+        "firefox"
+        "zen-browser"
+      # Window Management
+      "rectangle"
+  # Docker
+  "docker"
+  # Development Tools
+  "postman"  # API testing (alternative to Bruno)
+  "insomnia"  # Another API client option
+  # React/React Native Tools
+  "android-studio"  # For React Native Android development
+  # Utilities
+  "raycast"  # Better Spotlight alternative
+  "ghostty"  # Better terminal (if you want)
         ];
 
         # Uncomment to install app store apps using mas-cli.
