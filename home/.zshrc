@@ -16,33 +16,43 @@ fi
 # SHELL ENHANCEMENTS
 #=============================================================================
 
-# Oh My Zsh Configuration
-ZSH=$HOME/.oh-my-zsh
+# Starship prompt (check if available)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
-# Set Oh My Zsh theme (using a simple theme since we're using Starship)
-ZSH_THEME="robbyrussell"
+# Oh My Zsh Configuration (check if available)
+if [ -d "$HOME/.oh-my-zsh" ] || [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+  ZSH="${ZSH:-$HOME/.oh-my-zsh}"
+  ZSH_THEME="${ZSH_THEME:-robbyrussell}"
+  
+  # Oh My Zsh plugins
+  plugins=(git gitfast last-working-dir common-aliases history-substring-search npm zsh-autosuggestions web-search)
+  
+  # Load Oh-My-Zsh
+  if [ -f "${ZSH}/oh-my-zsh.sh" ]; then
+    source "${ZSH}/oh-my-zsh.sh"
+  fi
+fi
 
-# Starship prompt (this will override the Oh My Zsh theme)
-eval "$(starship init zsh)"
+# Zinit plugin manager (check if available)
+if [ -f "${HOME}/.local/share/zinit/zinit.git/zinit.zsh" ]; then
+  source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
+  
+  # Load zinit annexes
+  zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+fi
 
-# Oh My Zsh plugins
-plugins=(git gitfast last-working-dir common-aliases history-substring-search npm zsh-autosuggestions web-search)
-
-# Load Oh-My-Zsh
-source "${ZSH}/oh-my-zsh.sh"
-
-# Zinit plugin manager
-source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
-
-# Load zinit annexes
-zinit light-mode for \
-  zdharma-continuum/zinit-annex-as-monitor \
-  zdharma-continuum/zinit-annex-bin-gem-node \
-  zdharma-continuum/zinit-annex-patch-dl \
-  zdharma-continuum/zinit-annex-rust
-
-# Syntax highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Syntax highlighting (check multiple possible locations)
+if [ -f "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 #=============================================================================
 # PATH CONFIGURATION
@@ -51,23 +61,19 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Python user binaries
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
-# Java configuration
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$PATH
+# Java configuration (managed by Nix - zulu)
+# JAVA_HOME will be set by Nix if zulu is installed
+if command -v java >/dev/null 2>&1; then
+  # Try to detect JAVA_HOME from java command if not set
+  if [ -z "$JAVA_HOME" ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null || echo "")
+  fi
+  [ -n "$JAVA_HOME" ] && export PATH="$JAVA_HOME/bin:$PATH"
+fi
 
 # Go configuration
 export GOPATH=$HOME/go
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-# Flutter
-export PATH="$PATH:${HOME}/development/flutter/bin"
-
-# Volta (Node.js version manager)
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-# LunarVim
-export PATH="$HOME/.local/bin/lvim:$PATH"
 
 # Deno
 export DENO_INSTALL="$HOME/.deno"
@@ -84,31 +90,35 @@ type -a rbenv >/dev/null && eval "$(rbenv init -)"
 # Python (pyenv)
 export PATH="$HOME/.pyenv/shims:$PATH"
 
-# Node.js (nvm)
+# Node.js (nvm) - only load if nvm is installed
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  
+  # NVM auto-switching (only if nvm is available)
+  autoload -U add-zsh-hook
+  load-nvmrc() {
+    if command -v nvm >/dev/null 2>&1; then
+      local node_version="$(nvm version)"
+      local nvmrc_path="$(nvm_find_nvmrc)"
 
-# NVM auto-switching
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+      if [ -n "$nvmrc_path" ]; then
+        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use --silent
+        if [ "$nvmrc_node_version" = "N/A" ]; then
+          nvm install
+        elif [ "$nvmrc_node_version" != "$node_version" ]; then
+          nvm use --silent
+        fi
+      elif [ "$node_version" != "$(nvm version default)" ]; then
+        nvm use default --silent
+      fi
     fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    nvm use default --silent
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+  }
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
 
 #=============================================================================
 # ANDROID DEVELOPMENT
@@ -125,8 +135,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # SYSTEM CONFIGURATION
 #=============================================================================
 
-# Disable interactive rm by default
-unalias rm
+# Disable interactive rm by default (only if alias exists)
+if alias rm >/dev/null 2>&1; then
+  unalias rm
+fi
 
 # Custom aliases
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
@@ -146,7 +158,10 @@ function reset_trap {
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec reset_trap
 
-eval "$(starship init zsh)"
+# Starship prompt (re-initialize if available - in case oh-my-zsh overrides it)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
 #=============================================================================
 # EXTERNAL TOOLS INTEGRATION
