@@ -35,7 +35,7 @@ bindkey '^[[B' down-line-or-search
 
 # History
 HISTSIZE=10000
-HISTFILE="~/.zsh_history"
+HISTFILE="$HOME/.zsh_history"
 SAVEHIST="${HISTSIZE}"
 HISTDUP=erase
 setopt appendhistory
@@ -56,7 +56,3 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # shell integration
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.json)"
-fi
-
