@@ -69,6 +69,8 @@
         pkgs.docker
         pkgs.docker-compose
 
+        pkgs.dbeaver-bin
+
         # Terminal utilities
         pkgs.fzf         # Fuzzy finder
         pkgs.bat         # Better cat
@@ -118,9 +120,12 @@
           "insomnia"  # Another API client option
           # React/React Native Tools
           "android-studio"  # For React Native Android development
+          # Communication
+          "slack"  # Team communication
           # Utilities
           "raycast"  # Better Spotlight alternative
-          "ghostty"  # Better terminal (if you want)
+          "ghostty"  # Better terminal
+          "nordvpn"
         ];
 
         # Mac App Store apps installation
