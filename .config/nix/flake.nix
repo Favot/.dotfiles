@@ -70,6 +70,7 @@
         pkgs.docker-compose
 
         pkgs.dbeaver-bin
+        pkgs.ollama
 
         # Terminal utilities
         pkgs.fzf         # Fuzzy finder
