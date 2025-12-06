@@ -70,7 +70,7 @@
         pkgs.docker-compose
 
         pkgs.dbeaver-bin
-        pkgs.ollama
+        pkgs.llama-cpp
 
         # Terminal utilities
         pkgs.fzf         # Fuzzy finder
@@ -80,6 +80,7 @@
         pkgs.zoxide      # Better cd
         pkgs.delta       # Better git diff
         pkgs.go-task     # Task runner
+        pkgs.ngrok       # Secure tunneling tool
 
         # Libraries
         pkgs.capstone
@@ -128,6 +129,9 @@
           "raycast"  # Better Spotlight alternative
           "ghostty"  # Better terminal
           "nordvpn"
+          "todoist-app"
+
+          "ollama"
         ];
 
         # Mac App Store apps installation
