@@ -116,6 +116,7 @@
           # Docker
           "docker-desktop"
           # Development Tools
+          "visual-studio-code"  # Code editor
           "postman"  # API testing (alternative to Bruno)
           "insomnia"  # Another API client option
           # React/React Native Tools
