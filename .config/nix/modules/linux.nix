@@ -7,10 +7,10 @@ in
 {
   # Linux-specific packages
   environment.systemPackages = commonPackages ++ [
-    # Add Linux-specific packages here
-    # Example:
-    # pkgs.steam
-    # pkgs.obs-studio
+    # Game development (available via Nix on Linux)
+    pkgs.godot_4       # The Game Engine (v4.x is best for current features)
+    pkgs.gdtoolkit_4   # Essential! Provides 'gdformat' and 'gdlint' for GDScript
+    pkgs.inkscape      # Best for creating vector UI assets (chat bubbles, icons)
   ];
 
   # Set zsh as the default shell for the primary user (Linux)

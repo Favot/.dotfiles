@@ -41,6 +41,7 @@ in
       # "mas" - removed: mas signin not supported on newer macOS versions
       # See: https://github.com/mas-cli/mas#known-issues
       "qwen-code"
+      "gdtoolkit"  # Essential! Provides 'gdformat' and 'gdlint' for GDScript
     ];
 
     # Install cask packages from Homebrew.
@@ -68,6 +69,9 @@ in
       "todoist-app"
       "ollama-app"
       "zulu@17"  # Java 17
+      # Game development (not available via Nix on macOS, using Homebrew instead)
+      "godot"     # The Game Engine (v4.x is best for current features)
+      "inkscape"  # Best for creating vector UI assets (chat bubbles, icons)
     ];
 
     # Mac App Store apps installation
