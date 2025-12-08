@@ -15,11 +15,22 @@ in
 
     # macOS specific tools
     pkgs.capstone
-    pkgs.xcodebuild
+    # Note: pkgs.xcodebuild removed - we use the real Xcode tools instead
+    # Nix's xcodebuild wrapper reports version "0.1" which breaks React Native
+    # The real Xcode tools are configured via environment.extraInit below
 
     # Fonts
     firaMonoNerdFont
   ];
+
+  # Ensure Xcode tools take precedence over Nix wrappers
+  # This fixes React Native and CocoaPods builds that require the real Xcode version
+  environment.extraInit = ''
+    # Prepend Xcode's developer tools to PATH if Xcode is installed
+    if [ -d "/Applications/Xcode.app/Contents/Developer/usr/bin" ]; then
+      export PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
+    fi
+  '';
 
   # Homebrew for macOS package management
   homebrew = {
@@ -29,6 +40,7 @@ in
     brews = [
       # "mas" - removed: mas signin not supported on newer macOS versions
       # See: https://github.com/mas-cli/mas#known-issues
+      "qwen-code"
     ];
 
     # Install cask packages from Homebrew.
@@ -55,6 +67,7 @@ in
       "nordvpn"
       "todoist-app"
       "ollama-app"
+      "zulu@17"  # Java 17
     ];
 
     # Mac App Store apps installation

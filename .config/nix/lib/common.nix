@@ -8,7 +8,6 @@
     # Programming languages
     "go"
     "deno"
-    "zulu17"
 
     # Version control
     "git"
@@ -19,6 +18,7 @@
     "zsh"
     "tmux"
     "oh-my-posh"
+    "starship"
 
     # Editors
     "vim"
@@ -32,6 +32,10 @@
     "zoxide"
     "delta"
     "eza"
+    "bottom"
+    "tmux-mem-cpu-load"
+    "procs"
+    "lsd"
 
     # File management
     "wget"
