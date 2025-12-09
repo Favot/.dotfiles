@@ -218,6 +218,7 @@ in
     dock.magnification = true;
     dock.mineffect = "genie";
     finder.FXPreferredViewStyle = "clmv";
+    finder.NewWindowTarget = "PfHm";  # Open new Finder windows to home directory instead of Recent
     loginwindow.GuestEnabled  = false;
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
     NSGlobalDomain.KeyRepeat = 2;

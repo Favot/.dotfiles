@@ -22,6 +22,7 @@
 
     # Editors
     "vim"
+    "neovim"
 
     # Terminal utilities
     "tree"
