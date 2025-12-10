@@ -4,14 +4,13 @@
 font-family = FiraMono Nerd Font
 font-size = 12
 
-
 # Colors
 theme = Catppuccin Macchiato
 background-opacity = 0.85
 background-blur = true
 
 # Cursor
-cursor-style = block
+cursor-style = block_hollow
 
 # Window settings
 window-padding-x = 10
