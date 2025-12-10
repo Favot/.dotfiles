@@ -8,6 +8,7 @@
     # Programming languages
     "go"
     "deno"
+    "bun"
 
     # Version control
     "git"
