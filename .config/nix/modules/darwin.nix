@@ -109,6 +109,15 @@ in
     deps = [];
   };
 
+  # Hide Recents section from Finder sidebar
+  system.activationScripts."01-hideFinderRecents" = {
+    text = ''
+      echo "Hiding Recents section from Finder sidebar..."
+      sudo -u favot defaults write com.apple.finder ShowRecentTags -bool false 2>/dev/null || true
+    '';
+    deps = [];
+  };
+
   # Disable macOS system shortcuts that conflict with Ctrl+Space for tmux
   system.activationScripts.keyboardShortcuts.text = ''
     echo "Configuring keyboard shortcuts to allow Ctrl+Space for tmux..."
@@ -218,7 +227,7 @@ in
     dock.magnification = true;
     dock.mineffect = "genie";
     finder.FXPreferredViewStyle = "clmv";
-    finder.NewWindowTarget = "PfHm";  # Open new Finder windows to home directory instead of Recent
+    finder.NewWindowTarget = "Home";  # Open new Finder windows to home directory instead of Recent
     loginwindow.GuestEnabled  = false;
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
     NSGlobalDomain.KeyRepeat = 2;
