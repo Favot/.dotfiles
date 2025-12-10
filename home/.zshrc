@@ -59,7 +59,7 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias tree="eza --tree"
+alias tree="eza --tree --git-ignore"
 
 # Added by Antigravity
 export PATH="/Users/favot/.antigravity/antigravity/bin:$PATH"
