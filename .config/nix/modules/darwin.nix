@@ -50,6 +50,7 @@ in
       "antigravity"
       # Browsers
       "zen"
+      "vivaldi"
       # Window Management
       "rectangle"
       # Docker

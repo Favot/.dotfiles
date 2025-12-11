@@ -66,6 +66,8 @@
     # Browsers
     "google-chrome"
     "firefox"
+
+    "frp"
   ];
 
   # Common system configuration
@@ -88,17 +90,23 @@
     };
 
     # Install TPM (Tmux Plugin Manager) if it doesn't exist
-    system.activationScripts.tpm.text = ''
-      # Install TPM if it doesn't exist
-      TPM_HOME="/Users/favot/.tmux/plugins/tpm"
-      if [ ! -d "$TPM_HOME" ]; then
-        echo "Installing TPM (Tmux Plugin Manager)..."
-        sudo -u favot mkdir -p "$(dirname "$TPM_HOME")"
-        sudo -u favot git clone https://github.com/tmux-plugins/tpm "$TPM_HOME" || true
-      else
-        echo "TPM is already installed"
-      fi
-    '';
+    system.activationScripts.tpm = {
+      text = ''
+        # Install TPM if it doesn't exist
+        TPM_HOME="/Users/favot/.tmux/plugins/tpm"
+        if [ ! -d "$TPM_HOME" ]; then
+          echo "Installing TPM (Tmux Plugin Manager)..."
+          sudo -u favot mkdir -p "$(dirname "$TPM_HOME")"
+          sudo -u favot git clone https://github.com/tmux-plugins/tpm "$TPM_HOME" 2>&1 || {
+            echo "Warning: Failed to clone TPM. You may need to install it manually:"
+            echo "  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+          }
+        else
+          echo "TPM is already installed at $TPM_HOME"
+        fi
+      '';
+      deps = [];
+    };
 
     # Install nvm if it doesn't exist (for Node.js version management)
     system.activationScripts.nvm.text = ''

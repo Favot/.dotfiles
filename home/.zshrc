@@ -4,7 +4,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Source zinit if it exists
 if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "${dirname ${ZINIT_HOME}}"
+  mkdir -p "$(dirname "${ZINIT_HOME}")"
   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
@@ -32,6 +32,18 @@ zinit cdreplay -q
 # keybindings
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+
+# SSH Agent configuration
+# Start ssh-agent if not already running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
+
+# Add SSH key to agent (will prompt for passphrase once per session)
+# On macOS, use keychain to persist passphrase across reboots
+if [ -f ~/.ssh/id_ed25519 ] && ! ssh-add -l 2>/dev/null | grep -q "id_ed25519"; then
+  ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null
+fi
 
 # History
 HISTSIZE=10000
