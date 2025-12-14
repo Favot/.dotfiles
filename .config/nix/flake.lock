@@ -253,7 +253,24 @@
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "sikarugir-tap": "sikarugir-tap"
+      }
+    },
+    "sikarugir-tap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755132769,
+        "narHash": "sha256-SN1PrxawrvkOGe9LYBWsb/o9ae+rd7E1xVtGEumUw5c=",
+        "owner": "Sikarugir-App",
+        "repo": "homebrew-sikarugir",
+        "rev": "f40f3149ea598ec4fedd052c8784dc1b3b0a2694",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Sikarugir-App",
+        "repo": "homebrew-sikarugir",
+        "type": "github"
       }
     },
     "systems": {

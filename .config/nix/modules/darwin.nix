@@ -73,6 +73,9 @@ in
       # Game development (not available via Nix on macOS, using Homebrew instead)
       "godot"     # The Game Engine (v4.x is best for current features)
       "inkscape"  # Best for creating vector UI assets (chat bubbles, icons)
+
+      "steam"
+      "Sikarugir-App/sikarugir/sikarugir"
     ];
 
     # Mac App Store apps installation
