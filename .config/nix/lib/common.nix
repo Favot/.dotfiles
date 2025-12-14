@@ -51,6 +51,7 @@
     "ngrok"
     "gnupg"
     "act"
+    "tesseract"
 
     # API and database
     "bruno"
