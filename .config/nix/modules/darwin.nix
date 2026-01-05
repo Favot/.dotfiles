@@ -42,6 +42,7 @@ in
       # See: https://github.com/mas-cli/mas#known-issues
       "qwen-code"
       "gdtoolkit"  # Essential! Provides 'gdformat' and 'gdlint' for GDScript
+      "gemini-cli"
     ];
 
     # Install cask packages from Homebrew.
@@ -59,6 +60,7 @@ in
       "visual-studio-code"  # Code editor
       "postman"  # API testing (alternative to Bruno)
       "insomnia"  # Another API client option
+      "nrfutil"  # Nordic Semiconductor nRF Util (replaces deprecated nrfjprog)
       # React/React Native Tools
       "android-studio"  # For React Native Android development
       # Communication

@@ -45,6 +45,7 @@
     "zip"
     "unrar"
     "stow"
+    "localsend"
 
     # Utilities
     "go-task"
@@ -52,6 +53,16 @@
     "gnupg"
     "act"
     "tesseract"
+
+    # Build tools and development
+    "cmake"
+    "ninja"
+    "gperf"
+    "ccache"
+    "dfu-util"
+    "qemu"
+    "dtc"
+    "python3"
 
     # API and database
     "bruno"
