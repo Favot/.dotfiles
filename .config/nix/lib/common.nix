@@ -24,6 +24,7 @@
     # Editors
     "vim"
     "neovim"
+    "zed-editor"
 
     # Terminal utilities
     "tree"
