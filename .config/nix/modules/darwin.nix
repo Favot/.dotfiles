@@ -43,6 +43,7 @@ in
       "qwen-code"
       "gdtoolkit"  # Essential! Provides 'gdformat' and 'gdlint' for GDScript
       "gemini-cli"
+      "fastlane"
     ];
 
     # Install cask packages from Homebrew.
@@ -65,7 +66,6 @@ in
       "burp-suite"
       # React/React Native Tools
       "android-studio"  # For React Native Android development
-      "fastlane"
       # Communication
       "slack"  # Team communication
       # Utilities
