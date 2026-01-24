@@ -61,8 +61,12 @@ in
       "postman"  # API testing (alternative to Bruno)
       "insomnia"  # Another API client option
       "nrfutil"  # Nordic Semiconductor nRF Util (replaces deprecated nrfjprog)
+      "http-toolkit"
+      "burp-suite"
       # React/React Native Tools
       "android-studio"  # For React Native Android development
+      "mobile-dev-inc/tap/maestro"
+      "fastlane"
       # Communication
       "slack"  # Team communication
       # Utilities
