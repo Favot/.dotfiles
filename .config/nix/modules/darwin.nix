@@ -65,7 +65,6 @@ in
       "burp-suite"
       # React/React Native Tools
       "android-studio"  # For React Native Android development
-      "mobile-dev-inc/tap/maestro"
       "fastlane"
       # Communication
       "slack"  # Team communication
