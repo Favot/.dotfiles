@@ -65,6 +65,13 @@
     "dtc"
     "python3"
 
+
+    # Tauri development (for JS frontend)
+    "rustc"       # Rust compiler
+    "cargo"       # Rust package manager
+    "cargo-tauri" # Tauri CLI tool (optional but helpful)
+    "pkg-config"  # For building native dependencies
+
     # API and database
     "bruno"
     "dbeaver-bin"
@@ -82,6 +89,7 @@
     "firefox"
 
     "frp"
+
   ];
 
   # Common system configuration

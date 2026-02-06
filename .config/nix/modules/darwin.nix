@@ -99,9 +99,9 @@ in
     # Uncomment to remove any non-specified homebrew packages.
     # onActivation.cleanUp = "zap";
 
-    # Uncomment to automatically update Homebrew and upgrade packages.
-    # onActivation.autoUpdate = true;
-    # onActivation.upgrade = true;
+    # Automatically update Homebrew and upgrade packages on darwin-rebuild.
+    onActivation.autoUpdate = true;
+    onActivation.upgrade = true;
   };
 
   # macOS specific activation scripts
