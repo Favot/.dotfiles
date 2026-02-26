@@ -9,8 +9,7 @@ in
 {
   # macOS-specific packages
   environment.systemPackages = commonPackages ++ [
-    # React Native specific
-    pkgs.watchman    # Essential for React Native
+    # React Native specific (watchman via Homebrew brews - Nix build fails on folly)
     pkgs.cocoapods   # iOS dependencies
 
     # macOS specific tools
@@ -44,6 +43,8 @@ in
       "gdtoolkit"  # Essential! Provides 'gdformat' and 'gdlint' for GDScript
       "gemini-cli"
       "fastlane"
+      "watchman"   # Essential for React Native (Nix pkgs.watchman fails on folly build)
+      "libimobiledevice"  # iOS device support (formula, not cask)
     ];
 
     # Install cask packages from Homebrew.

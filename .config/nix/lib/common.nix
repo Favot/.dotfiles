@@ -25,6 +25,8 @@
     "vim"
     "neovim"
     "zed-editor"
+    "obsidian"
+
 
     # Terminal utilities
     "tree"
@@ -96,9 +98,15 @@
   commonConfig = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowBroken = true;
+    # Chrome in nixpkgs is marked insecure (updater broken); permit to allow install
+    nixpkgs.config.permittedInsecurePackages = [
+      "google-chrome-144.0.7559.97"
+    ];
 
     # Necessary for using flakes on this system.
     nix.settings.experimental-features = "nix-command flakes";
+    # Avoid "download buffer is full" on fast links (value in bytes, 500 MiB)
+    nix.settings.download-buffer-size = 524288000;
 
     # Enable zsh and set as default shell
     programs.zsh.enable = true;
