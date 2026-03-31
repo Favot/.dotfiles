@@ -6,30 +6,27 @@ This repository uses GNU Stow to manage dotfiles and configuration files.
 
 ### Initial Setup
 
-1. Run the stow script to create symlinks:
+1. Run stow to create symlinks:
    ```bash
-   ./stow.sh
+   cd ~/.dotfiles
+   stow -t ~/.config .config
    ```
 
 ### Managing .config Directory
 
-The `stow-config.sh` script manages all configuration files in the `.config` directory. It will:
-
-- Create symlinks from `~/.config/*` to `~/.dotfiles/.config/*`
-- Backup any existing files/directories before replacing them
-- Skip items that are already correctly linked
+The command above creates symlinks from `~/.config/*` to `~/.dotfiles/.config/*`.
 
 ### Adding New Config Files
 
 1. Add your config file/directory to `~/.dotfiles/.config/`
-2. Run `./stow.sh` to create the symlink
+2. Run `stow -t ~/.config .config` to create the symlink
 
 ### Removing Config Files
 
 To remove a symlink (but keep the file in dotfiles):
 ```bash
 cd ~/.dotfiles
-stow -d ~/.dotfiles -t ~ -D .config
+stow -t ~/.config -D .config
 # Then manually remove the specific item if needed
 ```
 
@@ -38,12 +35,13 @@ stow -d ~/.dotfiles -t ~ -D .config
 To remove all symlinks:
 ```bash
 cd ~/.dotfiles
-stow -d ~/.dotfiles -t ~ -D .config
+stow -t ~/.config -D .config
 ```
 
 ## Currently Managed Configs
 
 - `gh/` - GitHub CLI configuration
+- `ghostty/` - Ghostty terminal configuration
 - `i3/` - i3 window manager config
 - `neofetch/` - Neofetch configuration
 - `nix/` - Nix flake configuration
@@ -51,6 +49,7 @@ stow -d ~/.dotfiles -t ~ -D .config
 - `ohmyposh/` - Oh My Posh theme
 - `polybar/` - Polybar configuration
 - `starship.toml` - Starship prompt configuration
+- `zed/` - Zed editor configuration
 
 ## Notes
 

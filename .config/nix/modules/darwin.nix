@@ -45,12 +45,17 @@ in
       "fastlane"
       "watchman"   # Essential for React Native (Nix pkgs.watchman fails on folly build)
       "libimobiledevice"  # iOS device support (formula, not cask)
+      "ideviceinstaller"
+      # C++ development
+      "sdl3"
+      "fmt"
     ];
 
     # Install cask packages from Homebrew.
     casks = [
       "cursor"
       "antigravity"
+      "codex"
       # Browsers
       "zen"
       "vivaldi"
@@ -60,6 +65,7 @@ in
       "docker-desktop"
       # Development Tools
       "visual-studio-code"  # Code editor
+      "zed"
       "postman"  # API testing (alternative to Bruno)
       "insomnia"  # Another API client option
       "nrfutil"  # Nordic Semiconductor nRF Util (replaces deprecated nrfjprog)
@@ -75,6 +81,7 @@ in
       "nordvpn"
       "todoist-app"
       "ollama-app"
+      "vlc"
       "zulu@17"  # Java 17
       # Game development (not available via Nix on macOS, using Homebrew instead)
       "godot"     # The Game Engine (v4.x is best for current features)
@@ -85,17 +92,7 @@ in
       "Sikarugir-App/sikarugir/sikarugir"
     ];
 
-    # Mac App Store apps installation
-    # Note: mas signin is not supported on newer macOS versions
-    # Xcode must be installed manually from Mac App Store:
-    # 1. Open Mac App Store and search for "Xcode"
-    # 2. Install Xcode (App Store ID: 497799835)
-    # 3. After installation, run:
-    #    sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-    #    sudo xcodebuild -license accept
-    # masApps = {
-    #   "Xcode" = 497799835;
-    # };
+   
 
     # Uncomment to remove any non-specified homebrew packages.
     # onActivation.cleanUp = "zap";

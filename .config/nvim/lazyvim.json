@@ -1,9 +1,21 @@
 {
   "extras": [
-
+    "lang.typescript",
+    "lang.typescript.biome",
+    "lang.typescript.tsgo",
+    "lang.typescript.oxc",
+    "lang.kotlin",
+    "lang.sql",
+    "lang.vue",
+    "lang.svelte",
+    "lang.astro",
+    "lang.tailwind",
+    "lang.docker",
+    "formatting.prettier",
+    "linting.eslint"
   ],
   "news": {
-    "NEWS.md": "6077"
+    "NEWS.md": "11866"
   },
-  "version": 6
+  "version": 8
 }

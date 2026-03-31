@@ -24,8 +24,9 @@
     # Editors
     "vim"
     "neovim"
-    "zed-editor"
+    # "zed-editor"  # Disabled - too slow to build from source
     "obsidian"
+    "claude-code"
 
 
     # Terminal utilities
@@ -123,11 +124,11 @@
     system.activationScripts.tpm = {
       text = ''
         # Install TPM if it doesn't exist
-        TPM_HOME="/Users/favot/.tmux/plugins/tpm"
+        TPM_HOME="$HOME/.tmux/plugins/tpm"
         if [ ! -d "$TPM_HOME" ]; then
           echo "Installing TPM (Tmux Plugin Manager)..."
-          sudo -u favot mkdir -p "$(dirname "$TPM_HOME")"
-          sudo -u favot git clone https://github.com/tmux-plugins/tpm "$TPM_HOME" 2>&1 || {
+          mkdir -p "$(dirname "$TPM_HOME")"
+          git clone https://github.com/tmux-plugins/tpm "$TPM_HOME" 2>&1 || {
             echo "Warning: Failed to clone TPM. You may need to install it manually:"
             echo "  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
           }
@@ -139,14 +140,25 @@
     };
 
     # Install nvm if it doesn't exist (for Node.js version management)
-    system.activationScripts.nvm.text = ''
-      # Install nvm if it doesn't exist
-      if [ ! -d "/Users/favot/.nvm" ]; then
-        echo "Installing nvm (Node Version Manager)..."
-        sudo -u favot bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash' || true
-      else
-        echo "nvm is already installed"
-      fi
-    '';
+    system.activationScripts.nvm = {
+      text = ''
+        # Install nvm if it doesn't exist
+        NVM_DIR="$HOME/.nvm"
+        if [ ! -d "$NVM_DIR" ]; then
+          echo "Installing nvm (Node Version Manager)..."
+          # Download and install nvm without sudo
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | PROFILE=/dev/null bash
+        else
+          echo "nvm is already installed at $NVM_DIR"
+        fi
+
+        # Ensure nvm is loaded for current session
+        if [ -s "$NVM_DIR/nvm.sh" ]; then
+          . "$NVM_DIR/nvm.sh"
+          echo "nvm version: $(nvm --version)"
+        fi
+      '';
+      deps = [];
+    };
   };
 }

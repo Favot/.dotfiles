@@ -89,11 +89,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1770400387,
-        "narHash": "sha256-mAibVVcdLDvqESNGZW2+xHPFErtyj5s9Cer/4f2KA4w=",
+        "lastModified": 1774563757,
+        "narHash": "sha256-SfGKhid9GNNz31WAeEbfKuKE0ebtA5e3eVkX63vij+U=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "2314204d42a8a45fc443e21ba5999337e6629b7d",
+        "rev": "c8181737b6505e86c507431474d2843dcb3d70b3",
         "type": "github"
       },
       "original": {
@@ -105,11 +105,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1770401515,
-        "narHash": "sha256-yG+0WgpjFiRRrrLYsEFeXMWpwOpA+pK8PrnvrGxBenw=",
+        "lastModified": 1774562449,
+        "narHash": "sha256-AkLV4QF60irIGwG4jvbVoY0L7ZDCAnaFa+gESSNgLf4=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "bf122635876263fa66a737534d68d5cda62ffb6f",
+        "rev": "2b20c799068b6113b50f228230b8a233ebad4ef9",
         "type": "github"
       },
       "original": {
@@ -164,11 +164,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770184146,
-        "narHash": "sha256-DsqnN6LvXmohTRaal7tVZO/AKBuZ02kPBiZKSU4qa/k=",
+        "lastModified": 1773000227,
+        "narHash": "sha256-zm3ftUQw0MPumYi91HovoGhgyZBlM4o3Zy0LhPNwzXE=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "0d7874ef7e3ba02d58bebb871e6e29da36fa1b37",
+        "rev": "da529ac9e46f25ed5616fd634079a5f3c579135f",
         "type": "github"
       },
       "original": {
@@ -230,11 +230,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1770402247,
-        "narHash": "sha256-OI7WnC5RYBaC8tIrxU3IFYNQvZ/+l1M1bUcNgOuaojM=",
+        "lastModified": 1774563784,
+        "narHash": "sha256-GE14LVVefN7USHe5sGTRjhh/EffDsygxzJL1H+tfGD4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7e5938bc9029a04576f0f22cbb2373cf8a41f06a",
+        "rev": "db6cb083fbb4346daf647182df35f7fb3e88d999",
         "type": "github"
       },
       "original": {
@@ -260,11 +260,11 @@
     "sikarugir-tap": {
       "flake": false,
       "locked": {
-        "lastModified": 1769079953,
-        "narHash": "sha256-JsqStH31aAm3vdMukxacD5shudVppMgAy3rZfwkawLE=",
+        "lastModified": 1772070017,
+        "narHash": "sha256-r/DObHJUnCY1D1PJNfOZT62YVO5zjjlRRjVglE2Ck8U=",
         "owner": "Sikarugir-App",
         "repo": "homebrew-sikarugir",
-        "rev": "4c7f7b866daf0e615ac2ffb25f82a8d7ed5976f5",
+        "rev": "3052b49524786819357fbb863420f6b484bf32e8",
         "type": "github"
       },
       "original": {

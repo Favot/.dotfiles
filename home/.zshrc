@@ -98,3 +98,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Added by Antigravity
 export PATH="/Users/favot/.antigravity/antigravity/bin:$PATH"
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
