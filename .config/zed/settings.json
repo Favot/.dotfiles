@@ -10,6 +10,9 @@
 // SECURITY NOTE: Do NOT add API keys or secrets directly in this file.
 // Use environment variables instead: "api_key": "${env.MINIMAX_API_KEY}"
 {
+  "git_panel": {
+    "dock": "right"
+  },
   "agent_servers": {
     "opencode": {
       "type": "registry",
@@ -64,6 +67,10 @@
     "dock": "right",
   },
   "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "toggle_relative_line_numbers": true,
+  },
   "terminal": {
     "env": {
       "Q_NEW_SESSION": "\"1\"",
@@ -72,9 +79,34 @@
     },
     "font_family": "monospace",
   },
-  "base_keymap": "VSCode",
+  "base_keymap": "Cursor",
+  "autosave": "off",
+  "format_on_save": "on",
+  "formatter": "language_server",
   "preview_tabs": {
     "enabled": false,
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false,
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_close_button": "hover",
+    "show_diagnostics": "all",
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false,
+    "agent_review": false,
+    "code_actions": false,
+  },
+  "status_bar": {
+    "active_language_button": false,
+    "cursor_position_button": true,
+    "line_endings_button": false,
   },
   "relative_line_numbers": "enabled",
   "vertical_scroll_margin": 8.0,
@@ -94,9 +126,6 @@
   "show_edit_predictions": true,
   "ui_font_size": 16,
   "buffer_font_size": 14.0,
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark",
-  },
+  "theme": "Catppuccin Frappé",
+  "icon_theme": "Catppuccin Macchiato",
 }

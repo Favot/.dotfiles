@@ -9,13 +9,44 @@
   {
     "context": "Workspace",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
+      "cmd-e": "project_panel::ToggleFocus",
+      "cmd-t": "terminal_panel::Toggle",
+      "shift-cmd-t": "workspace::NewTerminal",
+      "alt-t": "terminal_panel::Toggle",
+      "shift-cmd-,": "pane::ActivatePreviousItem",
+      "shift-cmd-.": "pane::ActivateNextItem",
+      "cmd-[": "pane::ActivatePreviousItem",
+      "cmd-]": "pane::ActivateNextItem",
+      "cmd-r": null,
     },
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      // "j k": "vim::NormalBefore"
+      "j j": "vim::NormalBefore",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-e": "project_panel::ToggleFocus",
+      "cmd-[": "pane::ActivatePreviousItem",
+      "cmd-]": "pane::ActivateNextItem",
+      "cmd-left": "editor::MoveToPreviousWordStart",
+      "cmd-right": "editor::MoveToNextWordEnd",
+      "cmd-shift-left": "editor::SelectToPreviousWordStart",
+      "cmd-shift-right": "editor::SelectToNextWordEnd",
+      "shift-alt-y": "editor::OrganizeImports",
+      "cmd-r": "editor::Rename",
+      "cmd-g d": "editor::GoToDefinition",
+      "cmd-g shift-d": "editor::GoToDefinitionSplit",
+    },
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "cmd-r": "project_panel::Rename",
+      "cmd-f": "project_panel::NewDirectory",
     },
   },
 ]
