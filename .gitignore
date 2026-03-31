@@ -25,4 +25,4 @@ macos-terminal-themes/
 .idea/
 *.swp
 *.swo
-*~
+*~*.pkg
