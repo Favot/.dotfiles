@@ -43,6 +43,7 @@
 
   # Removes a file from the index
   unstage = reset HEAD --
+	worktree-add = "!f() { git worktree add -b \"$1\" /Users/favot/dev/wizzme/wizzme-server-worktree/\"$1\"; }; f"
 
 [help]
   autocorrect = 1
@@ -63,3 +64,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/run/current-system/sw/bin/gh auth git-credential
+[worktree]
+	tree = /Users/favot/dev/wizzme/wizzme-server-worktree

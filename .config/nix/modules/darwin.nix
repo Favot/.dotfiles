@@ -3,7 +3,7 @@
 let
   common = import ../lib/common.nix;
   firaMonoNerdFont = pkgs.nerd-fonts.fira-mono;
-  
+
   commonPackages = map (name: pkgs.${name}) common.commonPackages;
 in
 {
@@ -49,6 +49,8 @@ in
       # C++ development
       "sdl3"
       "fmt"
+      "jadx"
+
     ];
 
     # Install cask packages from Homebrew.
@@ -59,13 +61,12 @@ in
       # Browsers
       "zen"
       "vivaldi"
-      # Window Management
-      "rectangle"
       # Docker
       "docker-desktop"
       # Development Tools
       "visual-studio-code"  # Code editor
       "zed"
+      "bruno"
       "postman"  # API testing (alternative to Bruno)
       "insomnia"  # Another API client option
       "nrfutil"  # Nordic Semiconductor nRF Util (replaces deprecated nrfjprog)
@@ -88,11 +89,12 @@ in
       "inkscape"  # Best for creating vector UI assets (chat bubbles, icons)
       "whisky"
 
+
       "steam"
       "Sikarugir-App/sikarugir/sikarugir"
     ];
 
-   
+
 
     # Uncomment to remove any non-specified homebrew packages.
     # onActivation.cleanUp = "zap";
@@ -100,6 +102,12 @@ in
     # Automatically update Homebrew and upgrade packages on darwin-rebuild.
     onActivation.autoUpdate = true;
     onActivation.upgrade = true;
+
+    # Use fully-qualified Brewfile syntax for third-party tap casks.
+    # brew bundle can fail to resolve `cask "aerospace"` even when the tap is declared.
+    extraConfig = ''
+      cask "nikitabobko/tap/aerospace"
+    '';
   };
 
   # macOS specific activation scripts
@@ -129,19 +137,19 @@ in
   # Disable macOS system shortcuts that conflict with Ctrl+Space for tmux
   system.activationScripts.keyboardShortcuts.text = ''
     echo "Configuring keyboard shortcuts to allow Ctrl+Space for tmux..."
-    
+
     # Disable Ctrl+Space for switching input sources (Keyboard ID 60)
     # This is the most common conflict on macOS
     sudo -u favot /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:60:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || {
       # If the key doesn't exist, create it
       sudo -u favot /usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:enabled bool false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 2>/dev/null || true
     }
-    
+
     # Note: You may also need to configure your terminal emulator to pass Ctrl+Space through
     # For iTerm2: Preferences > Keys > Key Bindings > remove or change Ctrl+Space
     # For Terminal.app: This should work by default
     # For other terminals: Check their keyboard shortcut settings
-    
+
     echo "Keyboard shortcut configuration complete."
     echo "Note: If Ctrl+Space still doesn't work, check your terminal emulator's keyboard shortcut settings."
   '';
@@ -151,10 +159,10 @@ in
     # Install FiraMono Nerd Font to system fonts directory
     FONT_DIR="/Library/Fonts"
     FONT_SOURCE="${firaMonoNerdFont}/share/fonts"
-    
+
     # Create font directory if it doesn't exist
     mkdir -p "$FONT_DIR"
-    
+
     # Find and copy FiraMono Nerd Font files
     if [ -d "$FONT_SOURCE" ]; then
       echo "Installing FiraMono Nerd Font..."
@@ -192,20 +200,20 @@ in
         echo "Warning: Homebrew not found. Cannot install displayplacer."
       fi
     fi
-    
+
     # Set display resolution to 2048x1330
     echo "Configuring display resolution to 2048x1330..."
-    
+
     # Wait a moment for displayplacer to be available
     sleep 1
-    
+
     # Use displayplacer to set the resolution
     if command -v displayplacer >/dev/null 2>&1; then
       echo "Using displayplacer to set resolution to 2048x1330..."
-      
+
       # Get the main display ID
       MAIN_DISPLAY=$(displayplacer list 2>/dev/null | grep -A 5 "Persistent screen id" | head -1 | awk '{print $4}' || echo "")
-      
+
       if [ -n "$MAIN_DISPLAY" ]; then
         # Set resolution for the main display
         displayplacer "id:$MAIN_DISPLAY res:2048x1330" 2>/dev/null || {
@@ -225,8 +233,15 @@ in
       echo "  brew install displayplacer"
       echo "  displayplacer 'res:2048x1330'"
     fi
-    
+
     echo "Display resolution configuration complete!"
+  '';
+
+  system.activationScripts.aerospaceSetup.text = ''
+    AEROSPACE_CONFIG="/Users/${config.system.primaryUser}/.config/aerospace/aerospace.toml"
+    echo "AeroSpace installed. Grant Accessibility permission in System Settings > Privacy & Security > Accessibility."
+    echo "Manage AeroSpace config from dotfiles via stow: $AEROSPACE_CONFIG"
+    echo "To enable launch at login, set start-at-login = true in $AEROSPACE_CONFIG"
   '';
 
   # macOS specific defaults

@@ -3,14 +3,14 @@
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "envsitter-guard@latest",
-    "oh-my-opencode-slim@latest"
+    "oh-my-opencode-slim@latest",
   ],
   "agent": {
     "explore": {
-      "disable": true
+      "disable": true,
     },
     "general": {
-      "disable": true
-    }
-  }
+      "disable": true,
+    },
+  },
 }

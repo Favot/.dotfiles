@@ -1,4 +1,4 @@
-# Stow Configuration
+
 
 This repository uses GNU Stow to manage dotfiles and configuration files.
 
@@ -47,6 +47,7 @@ stow -t ~/.config -D .config
 - `nix/` - Nix flake configuration
 - `nvim/` - Neovim configuration
 - `ohmyposh/` - Oh My Posh theme
+- `opencode/` - Opencode configuration
 - `polybar/` - Polybar configuration
 - `starship.toml` - Starship prompt configuration
 - `zed/` - Zed editor configuration

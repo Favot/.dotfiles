@@ -1,79 +1,63 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-local cowboy = require("favot/discipline")
-cowboy.cowboy()
 
-local keymaps = vim.keymap
-local opts = { noremap = true, silent = true }
+local react_native_filetypes = {
+  javascript = true,
+  javascriptreact = true,
+  typescript = true,
+  typescriptreact = true,
+}
 
--- Select all files
-keymaps.set("n", "<C-a>", "gg<S-v>G")
+local function copy_to_clipboard(text)
+  vim.fn.setreg("+", text)
+  vim.fn.setreg('"', text)
 
--- New tabs
-keymaps.set("n", "te", ":tabedit", opts)
-keymaps.set("n", "<tab>", ":tabnext<Return>", opts)
-keymaps.set("n", "<s-tab>", ":tabprev<Return>", opts)
+  if vim.fn.has("mac") == 1 and vim.fn.executable("pbcopy") == 1 then
+    vim.fn.system("pbcopy", text)
+  end
+end
 
--- Slipt windows
-keymaps.set("n", "ss", ":split<Return>", opts)
-keymaps.set("n", "sv", ":vsplit<Return>", opts)
+local function relative_to_project_root(path)
+  local normalized_path = vim.fs.normalize(path)
+  local root = vim.fs.root(normalized_path, { ".git" }) or vim.fn.getcwd()
+  local normalized_root = vim.fs.normalize(root)
+  local prefix = normalized_root .. "/"
 
--- Move windows
-keymaps.set("n", "sh", "<C-w>h", opts)
-keymaps.set("n", "sk", "<C-w>k", opts)
-keymaps.set("n", "sj", "<C-w>j", opts)
-keymaps.set("n", "sl", "<C-w>l", opts)
+  if vim.startswith(normalized_path, prefix) then
+    return normalized_path:sub(#prefix + 1)
+  end
 
--- Resize windows
-keymaps.set("n", "<C-w>left", "<C-w><", opts)
-keymaps.set("n", "<C-w>right", "<C-w>>", opts)
+  return vim.fn.fnamemodify(normalized_path, ":.")
+end
 
--- Diagnostic
-keymaps.set("n", "<C-j>", function()
-  vim.diagnostic.goto_next()
-end, opts)
+vim.keymap.set("n", "gf", function()
+  if react_native_filetypes[vim.bo.filetype] and #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
+    vim.lsp.buf.definition()
+    return
+  end
 
--- Harpoon config
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
+  vim.cmd.normal({ args = { "gf" }, bang = true })
+end, { desc = "Go to component or file" })
 
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu)
+vim.keymap.set({ "n", "i", "v" }, "<D-w>", function()
+  local ok, snacks = pcall(require, "snacks")
+  if ok and snacks.bufdelete then
+    snacks.bufdelete()
+    return
+  end
 
-vim.keymap.set("n", "<C-1>", function()
-  ui.nav_file(1)
-end)
-vim.keymap.set("n", "<C-2>", function()
-  ui.nav_file(2)
-end)
-vim.keymap.set("n", "<C-3>", function()
-  ui.nav_file(3)
-end)
-vim.keymap.set("n", "<C-4>", function()
-  ui.nav_file(4)
-end)
+  vim.cmd.bdelete()
+end, { desc = "Delete buffer" })
 
-vim.opt.scrolloff = 8
+vim.keymap.set({ "n", "i", "v" }, "<D-S-c>", function()
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == "" then
+    vim.notify("No file in current buffer", vim.log.levels.WARN)
+    return
+  end
 
--- Move  higlighted line up and down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
-
--- Kee  cursor centered
-vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
-vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
-
--- keep search results centered
-vim.keymap.set("n", "n", "nzzzv", opts)
-vim.keymap.set("n", "N", "Nzzzv", opts)
-
--- Keep copied text in the clipboard
-vim.keymap.set("x", "<leader>p", '"_dP', opts)
-
--- copy to clipboard
-vim.keymap.set("v", "<leader>y", '"+y', opts)
-vim.keymap.set("n", "<leader>y", '"+y', opts)
-vim.keymap.set("n", "<leader>Y", "+Y", opts)
-
-vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+  local relative = relative_to_project_root(file)
+  copy_to_clipboard(relative)
+  vim.notify("Copied: " .. relative)
+end, { desc = "Copy relative file path" })

@@ -27,13 +27,17 @@
       url = "github:homebrew/homebrew-services";
       flake = false;
     };
+    nikitabobko-tap = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
     sikarugir-tap = {
       url = "github:Sikarugir-App/homebrew-sikarugir";
       flake = false;
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-services, sikarugir-tap, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-services, nikitabobko-tap, sikarugir-tap, ... }:
   let
     common = import ./lib/common.nix;
   in
@@ -62,14 +66,14 @@
               "homebrew/homebrew-cask" = homebrew-cask;
               "homebrew/homebrew-bundle" = homebrew-bundle;
               "homebrew/homebrew-services" = homebrew-services;
-              "Sikarugir-App/sikarugir" = sikarugir-tap;
+              "nikitabobko/homebrew-tap" = nikitabobko-tap;
+              "Sikarugir-App/homebrew-sikarugir" = sikarugir-tap;
             };
 
             # Optional: Enable fully-declarative tap management
             #
             # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-            # Temporarily set to true to allow initial tap setup, then can be set back to false
-            mutableTaps = true;
+            mutableTaps = false;
 
             # Automatically migrate existing Homebrew installations
             # autoMigrate = true;

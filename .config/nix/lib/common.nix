@@ -76,7 +76,6 @@
     "pkg-config"  # For building native dependencies
 
     # API and database
-    "bruno"
     "dbeaver-bin"
 
     # Docker

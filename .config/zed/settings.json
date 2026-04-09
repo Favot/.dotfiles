@@ -10,7 +10,10 @@
 // SECURITY NOTE: Do NOT add API keys or secrets directly in this file.
 // Use environment variables instead: "api_key": "${env.MINIMAX_API_KEY}"
 {
+  "disable_ai": true,
+  "hard_tabs": true,
   "git_panel": {
+    "sort_by_path": true,
     "dock": "right"
   },
   "agent_servers": {
@@ -19,41 +22,19 @@
     },
   },
   "edit_predictions": {
-    "provider": "open_ai_compatible_api",
-    "open_ai_compatible_api": {
-      "api_url": "https://api.minimax.io/v1/completions",
-      "model": "MiniMax-M2.7",
-      "prompt_format": "infer",
-      "max_output_tokens": 64,
-    },
+    "disabled_globs": [],
+    "provider": "mercury",
   },
   "language_models": {
     "openai_compatible": {
-      "MiniMax": {
-        "api_url": "\thttps://api.minimax.io/v1",
-        "available_models": [
-          {
-            "name": "MiniMax-M2.7",
-            "max_tokens": 200000,
-            "max_output_tokens": 32000,
-            "max_completion_tokens": 200000,
-            "capabilities": {
-              "tools": true,
-              "images": false,
-              "parallel_tool_calls": false,
-              "prompt_cache_key": false,
-              "chat_completions": true,
-            },
-          },
-        ],
       },
-    },
   },
   "agent": {
     "profiles": {},
     "default_model": {
-      "provider": "MiniMax",
-      "model": "MiniMax-M2.7",
+      "enable_thinking": true,
+      "provider": "openrouter",
+      "model": "minimax/minimax-m2.5",
     },
     "model_parameters": [],
   },
@@ -118,11 +99,15 @@
   },
   "buffer_font_family": "Fira Code",
   "file_types": {
-    "typescript": ["*.ts"],
-    "env": [".env"],
+    "typescript": [
+      "*.ts"
+    ],
+    "env": [
+      ".env"
+    ],
   },
   "colorize_brackets": true,
-  "show_whitespaces": "trailing",
+  "show_whitespaces": "selection",
   "show_edit_predictions": true,
   "ui_font_size": 16,
   "buffer_font_size": 14.0,

@@ -49,4 +49,40 @@
       "cmd-f": "project_panel::NewDirectory",
     },
   },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "cmd-a": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "%": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "a enter": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "cmd-n": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "a": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "unbind": {
+      "cmd-n": "project_panel::NewFile"
+    }
+  }
 ]

@@ -1,19 +1,8 @@
 {
   "extras": [
-    "lang.typescript",
-    "lang.typescript.biome",
-    "lang.typescript.tsgo",
-    "lang.typescript.oxc",
-    "lang.kotlin",
-    "lang.sql",
-    "lang.vue",
-    "lang.svelte",
-    "lang.astro",
-    "lang.tailwind",
-    "lang.docker",
-    "formatting.prettier",
-    "linting.eslint"
+
   ],
+  "install_version": 8,
   "news": {
     "NEWS.md": "11866"
   },

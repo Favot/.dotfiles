@@ -18,3 +18,9 @@ window-padding-y = 12
 adjust-cell-height = 25%
 # Scrollback
 scrollback-limit = 10000
+
+# Let Cmd+W reach terminal apps like Neovim
+keybind = cmd+w=unbind
+
+# Let Cmd+Shift+C reach terminal apps like Neovim
+keybind = cmd+shift+c=unbind
