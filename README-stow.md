@@ -42,6 +42,7 @@ stow -t ~/.config -D .config
 
 - `gh/` - GitHub CLI configuration
 - `ghostty/` - Ghostty terminal configuration
+- `herdr/` - herdr session/configuration
 - `i3/` - i3 window manager config
 - `neofetch/` - Neofetch configuration
 - `nix/` - Nix flake configuration

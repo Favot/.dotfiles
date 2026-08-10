@@ -16,13 +16,36 @@ macos-terminal-themes/
 **/*.log
 **/*.log.*
 
+# Socket files
+**/*.sock
+
+# herdr runtime lock
+.config/herdr/.plugins.lock
+
+# Backup / editor swap files
+**/*.bak
+**/*.backup
+**/*.old
+**/*.orig
+*.swp
+*.swo
+*~*.pkg
+
+# opencode runtime caches and local databases
+.config/opencode/context-mode/
+.config/opencode/sandbox/
+.config/opencode/.oh-my-opencode-slim/
+
+# Zed generated prompt database
+.config/zed/prompts/prompts-library-db.0.mdb/
+
+# Nix build/temp listings
+.config/nix/bucket_a_listing.txt
+
 # macOS
-.DS_Store
+**/.DS_Store
 .AppleDouble
 .LSOverride
 
 # IDE
 .idea/
-*.swp
-*.swo
-*~*.pkg

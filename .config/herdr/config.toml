@@ -1,0 +1,49 @@
+# herdr configuration
+# Mirrors ~/.tmux.conf where herdr has an equivalent.
+# Validate with: herdr config check
+# Reload a running server with: herdr server reload-config
+
+[terminal]
+# tmux: new panes/windows inherit the current pane directory
+# (bind '"'/'%'/'c' ... -c "#{pane_current_path}")
+new_cwd = "follow"
+
+[ui]
+# tmux: active pane border color (catppuccin mocha pink)
+accent = "#ea76cb"
+
+[keys]
+# tmux: set -g prefix C-Space
+prefix = "ctrl+space"
+
+# tmux: bind r source-file ~/.tmux.conf
+# (herdr's own default for reload is prefix+shift+r, so resize_mode moves there)
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+# tmux: bind -n M-H previous-window / bind -n M-L next-window
+# (herdr tabs are the equivalent of tmux windows; prefix+p/n kept as well)
+previous_tab = ["prefix+p", "alt+shift+h"]
+next_tab = ["prefix+n", "alt+shift+l"]
+
+# tmux: bind % split-window -h (side by side) / bind '"' split-window -v (stacked)
+# herdr names: split_vertical = side by side, split_horizontal = stacked
+split_vertical = ["prefix+v", "prefix+%"]
+split_horizontal = ["prefix+minus", "prefix+shift+'"]
+
+# Direct pane navigation without prefix (like vim-tmux-navigator's C-h/j/k/l).
+# Warning: these keys no longer reach apps inside panes (ctrl+l = clear screen,
+# ctrl+h = backspace in some shells, ctrl+j = enter in some programs).
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
+
+# tmux equivalents already matching herdr defaults (no override needed):
+#   new_tab       = prefix+c      (tmux: bind c new-window)
+#   copy_mode     = prefix+[      (tmux default)
+#   zoom          = prefix+z
+#   close_pane    = prefix+x      (tmux default)
+#   mouse         = on            (ui.mouse_capture defaults to true)
+#   tab bar on top                (ui.tab_bar_position defaults to "top")
+#   theme catppuccin              (theme.name defaults to "catppuccin")

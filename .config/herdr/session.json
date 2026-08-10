@@ -1,0 +1,122 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w1",
+      "custom_name": null,
+      "identity_cwd": "/Users/favot/dev/ibbou/ibbou-server",
+      "public_pane_numbers": {
+        "6": 6,
+        "8": 8,
+        "1": 1,
+        "5": 5,
+        "4": 4,
+        "7": 7,
+        "9": 9
+      },
+      "next_public_pane_number": 10,
+      "public_tab_numbers": [
+        1,
+        2
+      ],
+      "next_public_tab_number": 3,
+      "tabs": [
+        {
+          "custom_name": "1ibbou-server",
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.5,
+                  "first": {
+                    "Pane": 1
+                  },
+                  "second": {
+                    "Pane": 8
+                  }
+                }
+              },
+              "second": {
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.5,
+                  "first": {
+                    "Pane": 4
+                  },
+                  "second": {
+                    "Split": {
+                      "direction": "Horizontal",
+                      "ratio": 0.5,
+                      "first": {
+                        "Pane": 5
+                      },
+                      "second": {
+                        "Pane": 6
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "panes": {
+            "4": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server"
+            },
+            "5": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server/apps/mobile-app"
+            },
+            "1": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server"
+            },
+            "8": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server"
+            },
+            "6": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server"
+            }
+          },
+          "zoomed": false,
+          "focused": 1,
+          "root_pane": 1
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Split": {
+              "direction": "Vertical",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 7
+              },
+              "second": {
+                "Pane": 9
+              }
+            }
+          },
+          "panes": {
+            "9": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server/apps/mobile-app/android",
+              "label": "android"
+            },
+            "7": {
+              "cwd": "/Users/favot/.dotfiles"
+            }
+          },
+          "zoomed": false,
+          "focused": 7,
+          "root_pane": 7
+        }
+      ],
+      "active_tab": 0
+    }
+  ],
+  "active": 0,
+  "selected": 0,
+  "sidebar_width": 26,
+  "sidebar_section_split": 0.5,
+  "collapsed_space_keys": []
+}
