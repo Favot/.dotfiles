@@ -1,16 +1,26 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "context-mode": {
+      "type": "local",
+      "command": ["context-mode"]
+    }
+  },
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "envsitter-guard@latest",
-    "oh-my-opencode-slim@latest",
+    "oh-my-opencode-slim",
+    "context-mode"
   ],
   "agent": {
+    "plan": {
+      "model": "kimi-code/k3"
+    },
     "explore": {
-      "disable": true,
+      "disable": true
     },
     "general": {
-      "disable": true,
-    },
-  },
+      "disable": true
+    }
+  }
 }

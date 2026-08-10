@@ -20,6 +20,9 @@ in
 
     # Fonts
     firaMonoNerdFont
+
+    # Cloud storage sync
+    pkgs.rclone
   ];
 
   # Ensure Xcode tools take precedence over Nix wrappers
@@ -50,12 +53,22 @@ in
       "sdl3"
       "fmt"
       "jadx"
-
+      "rtk"
+      "p7zip"
+      "wireshark"
+      "webp"
+      "ipatool"
+      "testdisk"
+      "libfsapfs"
+      "ddrescue"
     ];
+
 
     # Install cask packages from Homebrew.
     casks = [
       "cursor"
+      "macFUSE"
+      "disk-drill"
       "antigravity"
       "codex"
       # Browsers
@@ -65,6 +78,7 @@ in
       "docker-desktop"
       # Development Tools
       "visual-studio-code"  # Code editor
+      "opencode-desktop"
       "zed"
       "bruno"
       "postman"  # API testing (alternative to Bruno)
@@ -88,10 +102,12 @@ in
       "godot"     # The Game Engine (v4.x is best for current features)
       "inkscape"  # Best for creating vector UI assets (chat bubbles, icons)
       "whisky"
-
-
+      "transmission"
       "steam"
+      "signal"
       "Sikarugir-App/sikarugir/sikarugir"
+      "gcloud-cli"
+      "affinity"
     ];
 
 

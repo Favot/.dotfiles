@@ -1,82 +1,64 @@
 {
-  "preset": "minimax",
+  "preset": "zai-minimax-mix",
   "tmux": {
     "enabled": false
   },
   "presets": {
-    "openai": {
+    "zai-minimax-mix": {
       "orchestrator": {
-        "model": "openai/gpt-5.4",
+        "model": "kimi-code/k3",
+        "variant": "high",
         "skills": ["*"],
         "mcps": ["websearch"]
       },
       "oracle": {
-        "model": "openai/gpt-5.4",
+        "model": "kimi-code/k3",
         "variant": "high",
         "skills": [],
         "mcps": []
       },
       "librarian": {
-        "model": "openai/gpt-5-codex",
+        "model": "minimax/MiniMax-M3",
         "variant": "low",
         "skills": [],
         "mcps": ["websearch", "context7", "grep_app"]
       },
       "explorer": {
-        "model": "openai/gpt-5-codex",
+        "model": "minimax/MiniMax-M3",
         "variant": "low",
         "skills": [],
         "mcps": []
       },
       "designer": {
-        "model": "openai/gpt-5-codex",
+        "model": "minimax/MiniMax-M3",
         "variant": "medium",
         "skills": ["agent-browser"],
         "mcps": []
       },
       "fixer": {
-        "model": "openai/gpt-5-codex",
+        "model": "minimax/MiniMax-M3",
         "variant": "low",
         "skills": [],
         "mcps": []
       }
+    }
+  },
+  "council": {
+    "master": {
+      "model": "minimax/MiniMax-M3",
+      "variant": "high"
     },
-    "minimax": {
-      "orchestrator": {
-        "model": "openai/gpt-5.4",
-        "variant": "high",
-        "skills": ["*"],
-        "mcps": ["websearch"]
-      },
-      "oracle": {
-        "model": "minimax/MiniMax-M2.7",
-        "variant": "high",
-        "skills": [],
-        "mcps": []
-      },
-      "librarian": {
-        "model": "minimax/MiniMax-M2.7",
-        "variant": "low",
-        "skills": [],
-        "mcps": ["websearch", "context7", "grep_app"]
-      },
-      "explorer": {
-        "model": "minimax/MiniMax-M2.7",
-        "variant": "low",
-        "skills": [],
-        "mcps": []
-      },
-      "designer": {
-        "model": "minimax/MiniMax-M2.7",
-        "variant": "medium",
-        "skills": ["agent-browser"],
-        "mcps": []
-      },
-      "fixer": {
-        "model": "minimax/MiniMax-M2.7",
-        "variant": "low",
-        "skills": [],
-        "mcps": []
+    "presets": {
+      "default": {
+        "alpha": {
+          "model": "minimax/MiniMax-M3"
+        },
+        "beta": {
+          "model": "minimax/MiniMax-M3"
+        },
+        "gamma": {
+          "model": "minimax/MiniMax-M3"
+        }
       }
     }
   }
