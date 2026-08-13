@@ -41,7 +41,7 @@ macos-terminal-themes/
 
 # Nix build/temp listings
 .config/nix/bucket_a_listing.txt
-
+.config/herdr/session.json
 # macOS
 **/.DS_Store
 .AppleDouble

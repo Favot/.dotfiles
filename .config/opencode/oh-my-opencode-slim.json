@@ -1,65 +1,65 @@
 {
-  "preset": "zai-minimax-mix",
-  "tmux": {
-    "enabled": false
-  },
-  "presets": {
-    "zai-minimax-mix": {
-      "orchestrator": {
-        "model": "kimi-code/k3",
-        "variant": "high",
-        "skills": ["*"],
-        "mcps": ["websearch"]
-      },
-      "oracle": {
-        "model": "kimi-code/k3",
-        "variant": "high",
-        "skills": [],
-        "mcps": []
-      },
-      "librarian": {
-        "model": "minimax/MiniMax-M3",
-        "variant": "low",
-        "skills": [],
-        "mcps": ["websearch", "context7", "grep_app"]
-      },
-      "explorer": {
-        "model": "minimax/MiniMax-M3",
-        "variant": "low",
-        "skills": [],
-        "mcps": []
-      },
-      "designer": {
-        "model": "minimax/MiniMax-M3",
-        "variant": "medium",
-        "skills": ["agent-browser"],
-        "mcps": []
-      },
-      "fixer": {
-        "model": "minimax/MiniMax-M3",
-        "variant": "low",
-        "skills": [],
-        "mcps": []
-      }
-    }
-  },
-  "council": {
-    "master": {
-      "model": "minimax/MiniMax-M3",
-      "variant": "high"
+    "preset": "zai-minimax-mix",
+    "tmux": {
+        "enabled": false
     },
     "presets": {
-      "default": {
-        "alpha": {
-          "model": "minimax/MiniMax-M3"
-        },
-        "beta": {
-          "model": "minimax/MiniMax-M3"
-        },
-        "gamma": {
-          "model": "minimax/MiniMax-M3"
+        "zai-minimax-mix": {
+            "orchestrator": {
+                "model": "kimi-for-coding/k3",
+                "variant": "high",
+                "skills": ["*"],
+                "mcps": ["websearch"]
+            },
+            "oracle": {
+                "model": "kimi-for-coding/kimi-for-coding-highspeed",
+                "variant": "high",
+                "skills": [],
+                "mcps": []
+            },
+            "librarian": {
+                "model": "minimax/MiniMax-M3",
+                "variant": "low",
+                "skills": [],
+                "mcps": ["websearch", "context7", "grep_app"]
+            },
+            "explorer": {
+                "model": "minimax/MiniMax-M3",
+                "variant": "low",
+                "skills": [],
+                "mcps": []
+            },
+            "designer": {
+                "model": "minimax/MiniMax-M3",
+                "variant": "medium",
+                "skills": ["agent-browser"],
+                "mcps": []
+            },
+            "fixer": {
+                "model": "minimax/MiniMax-M3",
+                "variant": "low",
+                "skills": [],
+                "mcps": []
+            }
         }
-      }
+    },
+    "council": {
+        "master": {
+            "model": "minimax/MiniMax-M3",
+            "variant": "high"
+        },
+        "presets": {
+            "default": {
+                "alpha": {
+                    "model": "minimax/MiniMax-M3"
+                },
+                "beta": {
+                    "model": "minimax/MiniMax-M3"
+                },
+                "gamma": {
+                    "model": "minimax/MiniMax-M3"
+                }
+            }
+        }
     }
-  }
 }

@@ -1,0 +1,58 @@
+[
+  {
+    "plugin_id": "herdr-tab-rename",
+    "name": "Tab Auto-Rename",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Auto-rename each tab to its focused pane's working-directory name. Manually renamed tabs are left alone.",
+    "manifest_path": "/Users/favot/.dotfiles/.config/herdr/plugins/github/herdr-tab-rename-70110f093163/herdr-plugin.toml",
+    "plugin_root": "/Users/favot/.dotfiles/.config/herdr/plugins/github/herdr-tab-rename-70110f093163",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "bash",
+          "scripts/install.sh"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "start",
+        "title": "Start tab auto-rename",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "./herdr-tab-rename",
+          "start"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "pane.created",
+        "command": [
+          "./herdr-tab-rename",
+          "start"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "lmilojevicc",
+      "repo": "herdr-tab-rename",
+      "resolved_commit": "8a2ad73847ec7e9f3137b7502557ffed58415f31",
+      "managed_path": "/Users/favot/.config/herdr/plugins/github/herdr-tab-rename-70110f093163",
+      "installed_unix_ms": 1786638423348
+    }
+  }
+]

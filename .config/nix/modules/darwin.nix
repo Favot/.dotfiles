@@ -59,7 +59,8 @@ in
       "webp"
       "ipatool"
       "testdisk"
-      "libfsapfs"
+      # Note: libfsapfs removed - does not exist in homebrew-core or nixpkgs
+      # (was added speculatively, never installed, and broke `brew bundle`)
       "ddrescue"
     ];
 
@@ -101,6 +102,7 @@ in
       # Game development (not available via Nix on macOS, using Homebrew instead)
       "godot"     # The Game Engine (v4.x is best for current features)
       "inkscape"  # Best for creating vector UI assets (chat bubbles, icons)
+      "blender"   # 3D modeling/animation (nixpkgs blender is broken on Darwin - nixpkgs#429309)
       "whisky"
       "transmission"
       "steam"

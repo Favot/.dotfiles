@@ -3,34 +3,38 @@
   "workspaces": [
     {
       "id": "w1",
-      "custom_name": null,
+      "custom_name": "[1] ibbou-server",
       "identity_cwd": "/Users/favot/dev/ibbou/ibbou-server",
       "public_pane_numbers": {
-        "6": 6,
-        "8": 8,
-        "1": 1,
+        "44": 44,
+        "45": 45,
         "5": 5,
+        "42": 42,
         "4": 4,
-        "7": 7,
-        "9": 9
+        "43": 43,
+        "1": 1,
+        "8": 8,
+        "34": 34,
+        "6": 6
       },
-      "next_public_pane_number": 10,
+      "next_public_pane_number": 46,
       "public_tab_numbers": [
         1,
-        2
+        9,
+        11
       ],
-      "next_public_tab_number": 3,
+      "next_public_tab_number": 12,
       "tabs": [
         {
-          "custom_name": "1ibbou-server",
+          "custom_name": "[1] 1ibbou-server",
           "layout": {
             "Split": {
               "direction": "Horizontal",
-              "ratio": 0.5,
+              "ratio": 0.46855345,
               "first": {
                 "Split": {
                   "direction": "Vertical",
-                  "ratio": 0.5,
+                  "ratio": 0.5625,
                   "first": {
                     "Pane": 1
                   },
@@ -63,20 +67,20 @@
             }
           },
           "panes": {
-            "4": {
+            "8": {
               "cwd": "/Users/favot/dev/ibbou/ibbou-server"
-            },
-            "5": {
-              "cwd": "/Users/favot/dev/ibbou/ibbou-server/apps/mobile-app"
             },
             "1": {
               "cwd": "/Users/favot/dev/ibbou/ibbou-server"
             },
-            "8": {
+            "4": {
               "cwd": "/Users/favot/dev/ibbou/ibbou-server"
             },
             "6": {
               "cwd": "/Users/favot/dev/ibbou/ibbou-server"
+            },
+            "5": {
+              "cwd": "/Users/favot/dev/ibbou/ibbou-server/apps/mobile-app"
             }
           },
           "zoomed": false,
@@ -84,34 +88,71 @@
           "root_pane": 1
         },
         {
-          "custom_name": null,
+          "custom_name": "[3] zsh",
           "layout": {
             "Split": {
-              "direction": "Vertical",
+              "direction": "Horizontal",
               "ratio": 0.5,
               "first": {
-                "Pane": 7
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.578125,
+                  "first": {
+                    "Pane": 34
+                  },
+                  "second": {
+                    "Pane": 44
+                  }
+                }
               },
               "second": {
-                "Pane": 9
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.78125,
+                  "first": {
+                    "Pane": 43
+                  },
+                  "second": {
+                    "Pane": 45
+                  }
+                }
               }
             }
           },
           "panes": {
-            "9": {
-              "cwd": "/Users/favot/dev/ibbou/ibbou-server/apps/mobile-app/android",
-              "label": "android"
+            "44": {
+              "cwd": "/Users/favot/dev/ibbou/fixmill"
             },
-            "7": {
-              "cwd": "/Users/favot/.dotfiles"
+            "34": {
+              "cwd": "/Users/favot/dev/ibbou/fixmill"
+            },
+            "45": {
+              "cwd": "/Users/favot/dev/ibbou/fixmill"
+            },
+            "43": {
+              "cwd": "/Users/favot/dev/ibbou/fixmill"
             }
           },
           "zoomed": false,
-          "focused": 7,
-          "root_pane": 7
+          "focused": 43,
+          "root_pane": 34
+        },
+        {
+          "custom_name": "[4] zsh",
+          "layout": {
+            "Pane": 42
+          },
+          "panes": {
+            "42": {
+              "cwd": "/Users/favot"
+            }
+          },
+          "zoomed": false,
+          "focused": 42,
+          "root_pane": 42
         }
       ],
-      "active_tab": 0
+      "active_tab": 1
     }
   ],
   "active": 0,
